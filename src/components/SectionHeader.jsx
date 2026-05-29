@@ -24,6 +24,9 @@ export function SectionHeader({
   return (
     <motion.div
       variants={textVariant(0.05)}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.1 }}
       className={`text-center max-w-6xl mx-auto mb-12 md:mb-16 ${className}`}
     >
       {subtitle && (
