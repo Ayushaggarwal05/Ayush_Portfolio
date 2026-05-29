@@ -26,12 +26,12 @@ function ProjectsComponent() {
 
   return (
     <div className="w-full relative">
-      {/* Premium ambient backdrop lighting blobs in rich gold/amber */}
-      <div className="absolute top-[-10%] left-[-20%] w-[60%] aspect-square rounded-full bg-gradient-to-tr from-amber-500/5 to-orange-500/10 blur-[120px] pointer-events-none z-0" />
-      <div className="absolute bottom-[-10%] right-[-20%] w-[60%] aspect-square rounded-full bg-gradient-to-br from-yellow-500/5 to-amber-500/10 blur-[120px] pointer-events-none z-0" />
+      {/* Premium ambient backdrop lighting blobs in rich gold/amber - seamlessly feathered */}
+      <div className="absolute top-[5%] left-[-10%] w-[50%] aspect-square rounded-full bg-gradient-to-tr from-amber-500/[0.02] via-orange-500/[0.06] to-transparent blur-[120px] pointer-events-none z-0" />
+      <div className="absolute bottom-[5%] right-[-10%] w-[50%] aspect-square rounded-full bg-gradient-to-br from-yellow-500/[0.02] via-amber-500/[0.06] to-transparent blur-[120px] pointer-events-none z-0" />
       
       {/* Center horizontal ambient brush glow highlight for premium visual lift */}
-      <div className="absolute top-[40%] left-1/2 -translate-x-1/2 w-[70%] aspect-[2/1] rounded-full bg-gradient-to-r from-amber-500/0 via-amber-500/[0.04] to-amber-500/0 blur-[140px] pointer-events-none z-0" />
+      <div className="absolute top-[40%] left-1/2 -translate-x-1/2 w-[70%] aspect-[2/1] rounded-full bg-gradient-to-r from-transparent via-amber-500/[0.03] to-transparent blur-[140px] pointer-events-none z-0" />
       
       {/* Decorative vertical lines on the sides for desktop structure */}
       <div className="absolute left-[-20px] top-0 bottom-0 w-[1px] bg-gradient-to-b from-transparent via-white/5 to-transparent hidden xl:block" />
