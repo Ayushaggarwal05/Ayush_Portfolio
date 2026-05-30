@@ -32,12 +32,12 @@ function ServicesComponent() {
               key={service.id}
               index={index}
               direction="up"
-              className="flex flex-col items-start gap-4 p-6 md:p-8 relative overflow-hidden group hover:border-pink-500/20"
+              className="flex flex-col items-start gap-4 p-6 md:p-8 relative overflow-hidden group hover:border-[#D6A45C]/20"
             >
               {/* Corner glowing overlay */}
-              <div className="absolute -top-10 -right-10 w-24 h-24 bg-pink-500/5 rounded-full blur-xl group-hover:bg-pink-500/10 transition-all duration-500" />
+              <div className="absolute -top-10 -right-10 w-24 h-24 bg-[#4A0E1A]/5 rounded-full blur-xl group-hover:bg-[#4A0E1A]/10 transition-all duration-500" />
 
-              <div className="p-3 bg-pink-500/15 border border-pink-500/20 text-pink-400 rounded-xl">
+              <div className="p-3 bg-[#4A0E1A]/15 border border-[#4A0E1A]/20 text-[#D6A45C] rounded-xl">
                 <IconComponent className="w-5 h-5 sm:w-6 sm:h-6" />
               </div>
 

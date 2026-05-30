@@ -9,7 +9,7 @@ export function Card({
   direction = "up",
   ...props 
 }) {
-  const cardClasses = `glassmorphism rounded-2xl p-6 md:p-8 transition-all duration-500 hover:bg-white/[0.04] hover:border-white/15 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.6),_0_0_40px_-10px_rgba(192,132,252,0.12)] ${className}`;
+  const cardClasses = `glassmorphism rounded-2xl p-6 md:p-8 transition-all duration-500 hover:bg-white/[0.04] hover:border-white/15 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.7),_0_0_40px_-10px_rgba(214,164,92,0.08)] ${className}`;
 
   if (!animate) {
     return (

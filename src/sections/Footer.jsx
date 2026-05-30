@@ -54,9 +54,9 @@ export function Footer() {
   };
 
   return (
-    <footer className="w-full border-t border-white/[0.05] bg-[#07070a] relative pt-20 pb-10 overflow-hidden">
+    <footer className="w-full border-t border-white/[0.05] bg-[#070707] relative pt-20 pb-10 overflow-hidden">
       {/* Premium backdrop ambient glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[250px] bg-gradient-to-b from-amber-400/5 via-purple-500/5 to-transparent rounded-full blur-[100px] pointer-events-none -z-10" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[250px] bg-gradient-to-b from-[#D6A45C]/5 via-[#6E1126]/5 to-transparent rounded-full blur-[100px] pointer-events-none -z-10" />
       
       {/* Decorative Grid Texture */}
       <div className="absolute inset-0 bg-radial-grid opacity-20 pointer-events-none -z-10" />
@@ -248,7 +248,7 @@ export function Footer() {
 
           {/* Slogan */}
           <div className="text-[11px] text-neutral-600 font-light tracking-wider flex items-center gap-1.5 order-1 sm:order-2">
-            <Terminal className="w-3 h-3 text-purple-500 animate-pulse" />
+            <Terminal className="w-3 h-3 text-[#D6A45C] animate-pulse" />
             <span>Designed & Engineered with premium SaaS aesthetics</span>
           </div>
 

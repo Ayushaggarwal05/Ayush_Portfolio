@@ -116,7 +116,7 @@ function ProjectsComponent() {
                   className="flex flex-col items-start w-full z-10"
                 >
                   {/* Title & Slogan */}
-                  <h3 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-none mb-2">
+                  <h3 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-none mb-2 bg-clip-text text-transparent bg-gradient-to-r from-[#E11D48] via-[#D6A45C] to-[#10B981] pb-1">
                     {project.title}
                   </h3>
                   <div className="text-neutral-400 text-xs sm:text-sm font-medium tracking-wide mb-3">
@@ -134,7 +134,7 @@ function ProjectsComponent() {
                           {key === "performance" || key === "accuracy" || key === "score" || key === "optimization" || key === "animation" || key === "engine" ? (
                             <Activity className="w-3.5 h-3.5 text-emerald-400" />
                           ) : (
-                            <Award className="w-3.5 h-3.5 text-purple-400" />
+                            <Award className="w-3.5 h-3.5 text-[#D6A45C]" />
                           )}
                           <span>
                             {key}: <span className="text-white font-semibold">{val}</span>

@@ -125,13 +125,13 @@ export function Navbar() {
         <a
           href="#contact"
           onClick={(e) => handleNavClick(e, "contact")}
-          className="relative group overflow-hidden text-xs font-semibold uppercase tracking-wider py-2 px-4 rounded-full text-white border border-white/10 bg-white/5 hover:bg-white/10 backdrop-blur-md transition-all duration-300 hidden md:flex items-center gap-1.5 shadow-[0_2px_10px_rgba(0,0,0,0.2)] hover:border-primary/40 hover:shadow-[0_0_15px_rgba(217,70,239,0.2)]"
+          className="relative group overflow-hidden text-xs font-semibold uppercase tracking-wider py-2 px-4 rounded-full text-white border border-white/10 bg-white/5 hover:bg-white/10 backdrop-blur-md transition-all duration-300 hidden md:flex items-center gap-1.5 shadow-[0_2px_10px_rgba(0,0,0,0.2)] hover:border-[#D6A45C]/40 hover:shadow-[0_0_15px_rgba(214,164,92,0.2)]"
         >
           <span className="relative z-10 flex items-center gap-1.5">
             Hire Me
             <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
           </span>
-          <span className="absolute inset-0 -translate-x-full group-hover:translate-x-0 bg-gradient-to-r from-pink-500/10 to-purple-500/10 transition-transform duration-500 ease-out" />
+          <span className="absolute inset-0 -translate-x-full group-hover:translate-x-0 bg-gradient-to-r from-[#D6A45C]/10 to-[#6E1126]/10 transition-transform duration-500 ease-out" />
         </a>
 
         {/* Mobile Menu Toggle Button */}
@@ -193,7 +193,7 @@ export function Navbar() {
             <a
               href="#contact"
               onClick={(e) => handleNavClick(e, "contact")}
-              className="w-full py-3 px-4 rounded-xl text-center block text-sm font-semibold uppercase tracking-wider text-white bg-gradient-to-r from-pink-500 to-purple-500 shadow-[0_4px_15px_rgba(217,70,239,0.3)] hover:opacity-90 active:scale-[0.98] transition-all duration-300"
+              className="w-full py-3 px-4 rounded-xl text-center block text-sm font-semibold uppercase tracking-wider text-white bg-gradient-to-r from-[#D6A45C] to-[#6E1126] shadow-[0_4px_15px_rgba(214,164,92,0.3)] hover:opacity-90 active:scale-[0.98] transition-all duration-300"
             >
               Get In Touch
             </a>

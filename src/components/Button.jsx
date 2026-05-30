@@ -12,9 +12,9 @@ export function Button({
   const baseStyles = "inline-flex items-center justify-center px-6 py-3 rounded-full font-medium text-sm transition-all duration-300 gap-2 cursor-pointer outline-none focus:ring-2 focus:ring-primary/50";
   
   const variants = {
-    primary: "bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 text-white shadow-lg shadow-pink-500/20 hover:shadow-pink-500/35 border border-transparent",
+    primary: "bg-gradient-to-r from-[#6E1126] via-[#D6A45C] to-[#4A0E1A] text-white shadow-lg shadow-[#D6A45C]/10 hover:shadow-[#D6A45C]/25 border border-transparent",
     secondary: "glassmorphism text-white hover:bg-white/10 border-white/10",
-    outline: "border border-purple-500/50 hover:border-purple-400 text-purple-400 hover:text-white bg-transparent hover:bg-purple-500/10",
+    outline: "border border-[#D6A45C]/50 hover:border-[#D6A45C] text-[#D6A45C] hover:text-white bg-transparent hover:bg-[#6E1126]/10",
     text: "text-gray-400 hover:text-white bg-transparent px-3 py-2"
   };
 

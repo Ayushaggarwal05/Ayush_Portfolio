@@ -58,8 +58,8 @@ export function ProfileCard({
       className={`relative overflow-hidden group flex flex-col items-center rounded-3xl w-full ${className}`.trim()}
     >
       {/* Subtle ambient lighting backdrop glow */}
-      <div className="absolute top-0 right-0 w-28 h-28 bg-pink-500/10 rounded-full blur-2xl pointer-events-none group-hover:bg-pink-500/15 transition-all duration-500" />
-      <div className="absolute bottom-0 left-0 w-28 h-28 bg-purple-500/5 rounded-full blur-2xl pointer-events-none group-hover:bg-purple-500/10 transition-all duration-500" />
+      <div className="absolute top-0 right-0 w-28 h-28 bg-[#4A0E1A]/10 rounded-full blur-2xl pointer-events-none group-hover:bg-[#4A0E1A]/15 transition-all duration-500" />
+      <div className="absolute bottom-0 left-0 w-28 h-28 bg-[#6E1126]/5 rounded-full blur-2xl pointer-events-none group-hover:bg-[#6E1126]/10 transition-all duration-500" />
 
       {/* 1. Availability Status Tag in top corner */}
       {status && (
@@ -73,7 +73,7 @@ export function ProfileCard({
       <div className="flex flex-col items-center text-center mt-6">
         <div className="relative group/avatar cursor-pointer mb-6">
           {/* Pulsating colorful gradient glow circle background */}
-          <div className="absolute inset-[-4px] rounded-full bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 opacity-75 group-hover/avatar:opacity-100 group-hover/avatar:scale-[1.03] transition-all duration-500 blur-[3px]" />
+          <div className="absolute inset-[-4px] rounded-full bg-gradient-to-r from-[#D6A45C] via-[#6E1126] to-[#4A0E1A] opacity-75 group-hover/avatar:opacity-100 group-hover/avatar:scale-[1.03] transition-all duration-500 blur-[3px]" />
 
           {/* Inner separator backdrop spacer */}
           <div className="absolute inset-[-1px] rounded-full bg-[#030303] z-0" />
@@ -97,14 +97,14 @@ export function ProfileCard({
         </h3>
 
         {/* Dynamic Glassmorphic Role Pill Badge */}
-        <div className="inline-flex items-center gap-1.5 py-1.5 px-4 rounded-full bg-white/[0.03] border border-white/10 text-xs sm:text-sm font-semibold text-pink-400 shadow-md backdrop-blur-md hover:bg-white/[0.06] hover:border-white/15 transition-all duration-300 select-none">
-          <Cpu className="w-3.5 h-3.5 text-purple-400 animate-pulse" />
+        <div className="inline-flex items-center gap-1.5 py-1.5 px-4 rounded-full bg-white/[0.03] border border-white/10 text-xs sm:text-sm font-semibold text-[#D6A45C] shadow-md backdrop-blur-md hover:bg-white/[0.06] hover:border-white/15 transition-all duration-300 select-none">
+          <Cpu className="w-3.5 h-3.5 text-[#D6A45C] animate-pulse" />
           <span>Full Stack & AI Engineer</span>
         </div>
 
         {/* Location Display */}
         <div className="flex items-center gap-1.5 text-neutral-400 text-xs sm:text-sm mt-4 select-none">
-          <MapPin className="w-4 h-4 text-purple-400" />
+          <MapPin className="w-4 h-4 text-[#D6A45C]" />
           <span>{location}</span>
         </div>
 
@@ -146,7 +146,7 @@ export function ProfileCard({
           {email && (
             <a
               href={`mailto:${email}`}
-              className="p-3 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/20 text-gray-400 hover:text-emerald-400 shadow-md hover:shadow-[0_0_15px_rgba(52,211,153,0.25)] hover:scale-105 transition-all duration-300 flex items-center justify-center"
+              className="p-3 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/20 text-gray-400 hover:text-[#D6A45C] shadow-md hover:shadow-[0_0_15px_rgba(214,164,92,0.25)] hover:scale-105 transition-all duration-300 flex items-center justify-center"
               aria-label="Email Address"
             >
               <Mail className="w-4 h-4" />
@@ -204,8 +204,8 @@ export function ProfileCard({
               text-neutral-300
               shadow-[inset_0_1px_1px_rgba(255,255,255,0.04)]
               hover:bg-white/[0.08]
-              hover:border-purple-400/30
-              hover:shadow-[0_0_25px_rgba(168,85,247,0.15)]
+              hover:border-[#D6A45C]/30
+              hover:shadow-[0_0_25px_rgba(214,164,92,0.12)]
               hover:text-white
               transition-all
               duration-300
@@ -214,10 +214,10 @@ export function ProfileCard({
             "
                 >
                   {/* Glow Effect */}
-                  <div className="absolute inset-0 rounded-full bg-purple-500/0 group-hover:bg-purple-500/[0.06] transition-all duration-300" />
+                  <div className="absolute inset-0 rounded-full bg-[#D6A45C]/0 group-hover:bg-[#D6A45C]/[0.06] transition-all duration-300" />
 
                   {/* Icon */}
-                  <SkillIcon className="relative z-10 w-4 h-4 text-purple-400 group-hover:text-pink-400 transition-colors duration-300" />
+                  <SkillIcon className="relative z-10 w-4 h-4 text-[#D6A45C] group-hover:text-[#F5F2EE] transition-colors duration-300" />
 
                   {/* Text */}
                   <span className="relative z-10">{skill}</span>

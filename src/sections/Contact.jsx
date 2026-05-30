@@ -48,9 +48,9 @@ function ContactComponent() {
           cursorRadius={500}
           cursorForce={0.1}
           bulgeOnly
-          gradientFrom="rgba(168, 85, 247, 0.35)"
-          gradientTo="rgba(180, 151, 207, 0.25)"
-          glowColor="#120F17"
+          gradientFrom="rgba(214, 164, 92, 0.35)"
+          gradientTo="rgba(110, 17, 38, 0.25)"
+          glowColor="#0F0B0C"
         />
       </div>
       <SectionHeader
@@ -68,7 +68,7 @@ function ContactComponent() {
             direction="right"
             className="relative overflow-hidden group"
           >
-            <div className="absolute top-0 right-0 w-24 h-24 bg-purple-500/5 rounded-full blur-2xl pointer-events-none group-hover:bg-purple-500/10 transition-all duration-500" />
+            <div className="absolute top-0 right-0 w-24 h-24 bg-[#6E1126]/5 rounded-full blur-2xl pointer-events-none group-hover:bg-[#6E1126]/10 transition-all duration-500" />
 
             <h3 className="text-xl font-bold text-white mb-2">
               Connect Directly
@@ -80,7 +80,7 @@ function ContactComponent() {
 
             <div className="flex flex-col gap-4 mb-6">
               <div className="flex items-center gap-3.5 p-3.5 rounded-xl bg-white/[0.02] border border-white/5 hover:border-white/10 transition-all">
-                <div className="p-2.5 bg-pink-500/10 text-pink-400 rounded-lg shrink-0">
+                <div className="p-2.5 bg-[#4A0E1A]/10 text-[#D6A45C] rounded-lg shrink-0">
                   <Mail className="w-4 h-4" />
                 </div>
                 <div>
@@ -97,7 +97,7 @@ function ContactComponent() {
               </div>
 
               <div className="flex items-center gap-3.5 p-3.5 rounded-xl bg-white/[0.02] border border-white/5 hover:border-white/10 transition-all">
-                <div className="p-2.5 bg-purple-500/10 text-purple-400 rounded-lg shrink-0">
+                <div className="p-2.5 bg-[#6E1126]/10 text-[#D6A45C] rounded-lg shrink-0">
                   <MapPin className="w-4 h-4" />
                 </div>
                 <div>
@@ -153,7 +153,7 @@ function ContactComponent() {
             direction="left"
             className="relative overflow-hidden group"
           >
-            <div className="absolute bottom-0 left-0 w-24 h-24 bg-pink-500/5 rounded-full blur-2xl pointer-events-none group-hover:bg-pink-500/10 transition-all duration-500" />
+            <div className="absolute bottom-0 left-0 w-24 h-24 bg-[#4A0E1A]/5 rounded-full blur-2xl pointer-events-none group-hover:bg-[#4A0E1A]/10 transition-all duration-500" />
 
             <form
               onSubmit={handleSubmit}
@@ -174,7 +174,7 @@ function ContactComponent() {
                     required
                     value={formData.name}
                     onChange={handleChange}
-                    className="w-full bg-white/[0.03] border border-white/5 focus:border-pink-500/30 focus:ring-1 focus:ring-pink-500/30 text-white rounded-xl py-3 px-4 text-sm font-light outline-none transition-all duration-300 placeholder:text-gray-600"
+                    className="w-full bg-white/[0.03] border border-white/5 focus:border-[#D6A45C]/30 focus:ring-1 focus:ring-[#D6A45C]/30 text-white rounded-xl py-3 px-4 text-sm font-light outline-none transition-all duration-300 placeholder:text-gray-600"
                     placeholder="John Doe"
                   />
                 </div>
@@ -192,7 +192,7 @@ function ContactComponent() {
                     required
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full bg-white/[0.03] border border-white/5 focus:border-pink-500/30 focus:ring-1 focus:ring-pink-500/30 text-white rounded-xl py-3 px-4 text-sm font-light outline-none transition-all duration-300 placeholder:text-gray-600"
+                    className="w-full bg-white/[0.03] border border-white/5 focus:border-[#D6A45C]/30 focus:ring-1 focus:ring-[#D6A45C]/30 text-white rounded-xl py-3 px-4 text-sm font-light outline-none transition-all duration-300 placeholder:text-gray-600"
                     placeholder="john@example.com"
                   />
                 </div>
@@ -212,7 +212,7 @@ function ContactComponent() {
                   required
                   value={formData.subject}
                   onChange={handleChange}
-                  className="w-full bg-white/[0.03] border border-white/5 focus:border-pink-500/30 focus:ring-1 focus:ring-pink-500/30 text-white rounded-xl py-3 px-4 text-sm font-light outline-none transition-all duration-300 placeholder:text-gray-600"
+                  className="w-full bg-white/[0.03] border border-white/5 focus:border-[#D6A45C]/30 focus:ring-1 focus:ring-[#D6A45C]/30 text-white rounded-xl py-3 px-4 text-sm font-light outline-none transition-all duration-300 placeholder:text-gray-600"
                   placeholder="Inquiry about new project"
                 />
               </div>
@@ -231,7 +231,7 @@ function ContactComponent() {
                   rows="4"
                   value={formData.message}
                   onChange={handleChange}
-                  className="w-full bg-white/[0.03] border border-white/5 focus:border-pink-500/30 focus:ring-1 focus:ring-pink-500/30 text-white rounded-xl py-3 px-4 text-sm font-light outline-none transition-all duration-300 placeholder:text-gray-600 resize-none"
+                  className="w-full bg-white/[0.03] border border-white/5 focus:border-[#D6A45C]/30 focus:ring-1 focus:ring-[#D6A45C]/30 text-white rounded-xl py-3 px-4 text-sm font-light outline-none transition-all duration-300 placeholder:text-gray-600 resize-none"
                   placeholder="Hey, let's discuss..."
                 />
               </div>

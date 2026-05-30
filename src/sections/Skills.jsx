@@ -163,8 +163,8 @@ function SkillsComponent() {
         {/* Row 1: Left to Right Marquee */}
         <div className="relative w-screen left-1/2 -translate-x-1/2 overflow-hidden py-2 pointer-events-auto">
           {/* Edge gradient masks for premium fade-out effect */}
-          <div className="absolute top-0 bottom-0 left-0 w-24 md:w-48 bg-gradient-to-r from-[#07070a] to-transparent z-10 pointer-events-none" />
-          <div className="absolute top-0 bottom-0 right-0 w-24 md:w-48 bg-gradient-to-l from-[#07070a] to-transparent z-10 pointer-events-none" />
+          <div className="absolute top-0 bottom-0 left-0 w-24 md:w-48 bg-gradient-to-r from-[#070707] to-transparent z-10 pointer-events-none" />
+          <div className="absolute top-0 bottom-0 right-0 w-24 md:w-48 bg-gradient-to-l from-[#070707] to-transparent z-10 pointer-events-none" />
 
           <div className="animate-marquee-left flex gap-16 items-center">
             {row1.map((skill, index) => (
@@ -201,8 +201,8 @@ function SkillsComponent() {
         {/* Row 2: Right to Left Marquee */}
         <div className="relative w-screen left-1/2 -translate-x-1/2 overflow-hidden py-4 pointer-events-auto">
           {/* Edge gradient masks for premium fade-out effect */}
-          <div className="absolute top-0 bottom-0 left-0 w-24 md:w-48 bg-gradient-to-r from-[#07070a] to-transparent z-10 pointer-events-none" />
-          <div className="absolute top-0 bottom-0 right-0 w-24 md:w-48 bg-gradient-to-l from-[#07070a] to-transparent z-10 pointer-events-none" />
+          <div className="absolute top-0 bottom-0 left-0 w-24 md:w-48 bg-gradient-to-r from-[#070707] to-transparent z-10 pointer-events-none" />
+          <div className="absolute top-0 bottom-0 right-0 w-24 md:w-48 bg-gradient-to-l from-[#070707] to-transparent z-10 pointer-events-none" />
 
           <div className="animate-marquee-right flex gap-16 items-center">
             {row2.map((skill, index) => (

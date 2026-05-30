@@ -32,9 +32,9 @@ export function Hero() {
     >
       {/* 1. PREMIUM BACKGROUND SYSTEM & WEBGL LIGHTRAYS */}
       {/* Layered deep radial blur lighting spheres */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] md:w-[900px] h-[400px] md:h-[600px] bg-purple-600/10 rounded-full blur-[140px] pointer-events-none animate-pulse-slow select-none z-0" />
-      <div className="absolute bottom-1/3 left-1/4 w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-pink-500/5 rounded-full blur-[120px] pointer-events-none select-none z-0" />
-      <div className="absolute top-1/3 right-1/4 w-[350px] md:w-[600px] h-[350px] md:h-[600px] bg-indigo-500/5 rounded-full blur-[130px] pointer-events-none select-none z-0" />
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] md:w-[900px] h-[400px] md:h-[600px] bg-[#6E1126]/12 rounded-full blur-[140px] pointer-events-none animate-pulse-slow select-none z-0" />
+      <div className="absolute bottom-1/3 left-1/4 w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-[#4A0E1A]/8 rounded-full blur-[120px] pointer-events-none select-none z-0" />
+      <div className="absolute top-1/3 right-1/4 w-[350px] md:w-[600px] h-[350px] md:h-[600px] bg-[#D6A45C]/6 rounded-full blur-[130px] pointer-events-none select-none z-0" />
 
       {/* Hardware-accelerated delicate stars field overlay */}
       <div className="absolute inset-0 opacity-45 pointer-events-none select-none z-0">
@@ -55,7 +55,7 @@ export function Hero() {
       <div className="absolute inset-0 z-[1] pointer-events-none opacity-85 select-none">
         <LightRays
           raysOrigin="top-center"
-          raysColor="#c084fc"
+          raysColor="#D6A45C"
           raysSpeed={0.8}
           lightSpread={1.4}
           rayLength={2.0}
@@ -91,7 +91,7 @@ export function Hero() {
             variants={fadeIn("up", "spring", 0.3, 0.75)}
             className="text-5xl sm:text-7xl md:text-8xl lg:text-[7.5rem] xl:text-[8.5rem] font-black tracking-[-0.04em] leading-[0.9] text-white max-w-5xl mb-6 select-none"
           >
-            <span className="bg-clip-text bg-gradient-to-r from-white via-pink-100 to-purple-400 text-transparent block pb-3 leading-none">
+            <span className="bg-clip-text bg-gradient-to-r from-white via-neutral-100 to-[#D6A45C] text-transparent block pb-3 leading-none">
               {name}
             </span>
           </motion.h1>
@@ -102,11 +102,11 @@ export function Hero() {
             className="text-xl sm:text-2xl md:text-3xl font-bold tracking-wide text-neutral-300 max-w-3xl mb-4 select-none"
           >
             <span>Full Stack </span>
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-pink-400 to-purple-400 font-extrabold">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#D6A45C] to-[#F5F2EE] font-extrabold">
               Engineer
             </span>
             <span className="text-neutral-500 font-medium"> & </span>
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-indigo-400 to-pink-500 font-black">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#6E1126] via-[#D6A45C] to-[#F5F2EE] font-black">
               AIML Enthusiast
             </span>
           </motion.p>
@@ -128,7 +128,7 @@ export function Hero() {
               variant="primary"
               onClick={(e) => handleScrollTo(e, "projects")}
               icon={ArrowRight}
-              className="w-full sm:w-auto px-8 py-3.5 text-base font-semibold shadow-[0_0_35px_rgba(217,70,239,0.25)] hover:shadow-[0_0_45px_rgba(217,70,239,0.5)] border border-white/10 transition-all duration-300"
+              className="w-full sm:w-auto px-8 py-3.5 text-base font-semibold shadow-[0_0_35px_rgba(214,164,92,0.2)] hover:shadow-[0_0_45px_rgba(214,164,92,0.4)] border border-white/10 transition-all duration-300"
             >
               View Featured Work
             </Button>
@@ -167,7 +167,7 @@ export function Hero() {
           boxShadow: `
       0 -2px 12px rgba(255,255,255,0.7),
       0 -8px 40px rgba(255,255,255,0.18),
-      0 -25px 90px rgba(168,85,247,0.12)
+      0 -25px 90px rgba(110,17,38,0.18)
     `,
         }}
       />
@@ -194,7 +194,7 @@ export function Hero() {
                 repeat: Infinity,
                 ease: "easeInOut",
               }}
-              className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-pink-500 to-purple-500 shadow-[0_0_6px_#d946ef]"
+              className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-[#D6A45C] to-[#6E1126] shadow-[0_0_6px_#D6A45C]"
             />
           </div>
         </a>
