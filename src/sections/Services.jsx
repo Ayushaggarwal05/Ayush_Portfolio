@@ -1,7 +1,7 @@
-import { Cpu, Layers, Zap, Layout } from "lucide-react";
+import React, { useState } from "react";
+import { Cpu, Layers, Zap, Layout, ArrowUpRight } from "lucide-react";
 import { SectionWrapper } from "../layouts/SectionWrapper";
 import { SectionHeader } from "../components/SectionHeader";
-import { Card } from "../components/Card";
 import { portfolioData } from "../data/portfolioData";
 
 const iconMap = {
@@ -11,11 +11,31 @@ const iconMap = {
   Layout,
 };
 
+const serviceMedia = {
+  "service-1": {
+    gradient: "from-[#D6A45C]/25 to-[#4A0E1A]/60",
+    img: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=800&q=80", // Bright UI design and wireframes
+  },
+  "service-2": {
+    gradient: "from-[#4A0E1A]/30 to-[#2D0B12]/70",
+    img: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&w=800&q=80", // Bright neon coding on screen
+  },
+  "service-3": {
+    gradient: "from-[#D6A45C]/20 via-[#4A0E1A]/40 to-[#070707]/70",
+    img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80", // Bright analytics dashboard and metrics
+  },
+  "service-4": {
+    gradient: "from-[#6E1126]/30 to-[#2D0B12]/70",
+    img: "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?auto=format&fit=crop&w=800&q=80", // Bright UI/UX design sketches and color palettes
+  },
+};
+
 function ServicesComponent() {
   const servicesList = portfolioData.services;
+  const [activeService, setActiveService] = useState(0);
 
   return (
-    <div className="w-full">
+    <div className="w-full relative">
       <SectionHeader
         subtitle="What I Do"
         title="MY CORE EXPERTISE"
@@ -23,32 +43,82 @@ function ServicesComponent() {
         description="Providing professional software development and design solutions tailored for premium scaling."
       />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
+      {/* Dynamic Expandable Cards Component */}
+      <div className="flex flex-col lg:flex-row gap-6 mt-12 h-[850px] lg:h-[500px] w-full">
         {servicesList.map((service, index) => {
+          const isActive = activeService === index;
           const IconComponent = iconMap[service.icon] || Cpu;
+          const media = serviceMedia[service.id] || serviceMedia["service-1"];
 
           return (
-            <Card
+            <div
               key={service.id}
-              index={index}
-              direction="up"
-              className="flex flex-col items-start gap-4 p-6 md:p-8 relative overflow-hidden group hover:border-[#D6A45C]/20"
+              onMouseEnter={() => setActiveService(index)}
+              onClick={() => setActiveService(index)}
+              className={`relative rounded-3xl overflow-hidden cursor-pointer transition-[flex,width] duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] border border-white/[0.08] hover:border-[#D6A45C]/30
+                ${isActive ? "flex-[10] shadow-[0_20px_50px_rgba(74,14,26,0.35)] ring-1 ring-white/20" : "flex-[2] opacity-80 hover:opacity-100"} 
+                min-h-[110px] lg:min-h-auto group`}
             >
-              {/* Corner glowing overlay */}
-              <div className="absolute -top-10 -right-10 w-24 h-24 bg-[#4A0E1A]/5 rounded-full blur-xl group-hover:bg-[#4A0E1A]/10 transition-all duration-500" />
-
-              <div className="p-3 bg-[#4A0E1A]/15 border border-[#4A0E1A]/20 text-[#D6A45C] rounded-xl">
-                <IconComponent className="w-5 h-5 sm:w-6 sm:h-6" />
+              {/* Background Image & Ambient Overlay */}
+              <div className="absolute inset-0 transition-transform duration-1000 ease-out group-hover:scale-105">
+                <img
+                  src={media.img}
+                  alt={service.title}
+                  className="w-full h-full object-cover filter brightness-[0.8] contrast-[1.1] saturate-[1.25]"
+                />
+                {/* Premium Gradient Overlay */}
+                <div
+                  className={`absolute inset-0 bg-gradient-to-br ${media.gradient} mix-blend-multiply transition-opacity duration-500 ${isActive ? "opacity-70" : "opacity-85"}`}
+                />
+                <div className="absolute inset-0 bg-neutral-950/40" />
               </div>
 
-              <h3 className="text-lg sm:text-xl font-bold text-white tracking-wide mt-2">
-                {service.title}
-              </h3>
+              {/* Content Container */}
+              <div className="absolute inset-0 flex flex-col justify-end p-6 lg:p-8 text-white z-10 drop-shadow-[0_4px_12px_rgba(0,0,0,0.7)]">
+                {/* Collapsed State Icon Badge */}
+                <div
+                  className={`mb-auto transition-all duration-500 ${isActive ? "translate-y-0 opacity-100 scale-100" : "translate-y-2 opacity-90 scale-95"}`}
+                >
+                  <div className="w-12 h-12 rounded-xl bg-white/5 backdrop-blur-md flex items-center justify-center mb-4 border border-white/10 group-hover:border-[#D6A45C]/30 shadow-lg transition-colors duration-300">
+                    <IconComponent className="w-6 h-6 text-[#D6A45C]" />
+                  </div>
+                </div>
 
-              <p className="text-xs sm:text-sm text-gray-400 font-light leading-relaxed">
-                {service.description}
-              </p>
-            </Card>
+                {/* Text Content */}
+                <div className="relative">
+                  {/* Title */}
+                  <h3
+                    className={`font-serif italic font-extrabold tracking-tight transition-all duration-500 text-white flex items-center ${
+                      isActive
+                        ? "text-2xl lg:text-3xl mb-3"
+                        : "text-lg lg:text-xl opacity-90 truncate"
+                    }`}
+                  >
+                    <span>{service.title}</span>
+                    <ArrowUpRight
+                      className={`inline-block ml-2 w-5 h-5 text-[#D6A45C] transition-all duration-500 ${
+                        isActive
+                          ? "opacity-100 translate-x-0 translate-y-0"
+                          : "opacity-0 -translate-x-4 translate-y-4 w-0"
+                      }`}
+                    />
+                  </h3>
+
+                  {/* Description */}
+                  <div
+                    className={`overflow-hidden transition-all duration-700 ease-in-out ${
+                      isActive
+                        ? "max-h-48 opacity-100 mt-2"
+                        : "max-h-0 opacity-0"
+                    }`}
+                  >
+                    <p className="text-sm lg:text-base text-gray-300 leading-relaxed font-light max-w-xl">
+                      {service.description}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
           );
         })}
       </div>
