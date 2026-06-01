@@ -64,7 +64,7 @@ function ServicesComponent() {
                 <img
                   src={media.img}
                   alt={service.title}
-                  className="w-full h-full object-cover filter brightness-[0.8] contrast-[1.1] saturate-[1.25]"
+                  className="w-full h-full object-cover filter brightness-[0.9] contrast-[1.1] saturate-[1.25]"
                 />
                 {/* Premium Gradient Overlay */}
                 <div

@@ -6,6 +6,22 @@ import { SectionWrapper } from "../layouts/SectionWrapper";
 import { SectionHeader } from "../components/SectionHeader";
 import { portfolioData } from "../data/portfolioData";
 
+import crewflowImg from "../assets/projects_ss/Crewflow_ss.png";
+import kisanSaathiImg from "../assets/projects_ss/Kisan_saathi_ss.webp";
+import netflixGptImg from "../assets/projects_ss/Netflix-gpt_ss.png";
+import ryzeRedesignImg from "../assets/projects_ss/ryze-redesign-ss.png";
+import travellerImg from "../assets/projects_ss/Traveller_ss.webp";
+import gameImg from "../assets/projects_ss/game_ss.png";
+
+const projectImageMap = {
+  "proj-1": crewflowImg,
+  "proj-2": kisanSaathiImg,
+  "proj-3": netflixGptImg,
+  "proj-4": ryzeRedesignImg,
+  "proj-5": travellerImg,
+  "proj-6": gameImg,
+};
+
 function ProjectsComponent() {
   const allProjects = portfolioData.projects;
   const [filter, setFilter] = useState("All");
@@ -22,17 +38,19 @@ function ProjectsComponent() {
       : allProjects.filter((proj) => proj.category === filter);
 
   // Show only 3 projects initially, expand if showAll is true
-  const visibleProjects = showAll ? filteredProjects : filteredProjects.slice(0, 3);
+  const visibleProjects = showAll
+    ? filteredProjects
+    : filteredProjects.slice(0, 3);
 
   return (
     <div className="w-full relative">
       {/* Premium ambient backdrop lighting blobs in rich gold/amber - seamlessly feathered */}
       <div className="absolute top-[5%] left-[-10%] w-[50%] aspect-square rounded-full bg-gradient-to-tr from-amber-500/[0.02] via-orange-500/[0.06] to-transparent blur-[120px] pointer-events-none z-0" />
       <div className="absolute bottom-[5%] right-[-10%] w-[50%] aspect-square rounded-full bg-gradient-to-br from-yellow-500/[0.02] via-amber-500/[0.06] to-transparent blur-[120px] pointer-events-none z-0" />
-      
+
       {/* Center horizontal ambient brush glow highlight for premium visual lift */}
       <div className="absolute top-[40%] left-1/2 -translate-x-1/2 w-[70%] aspect-[2/1] rounded-full bg-gradient-to-r from-transparent via-amber-500/[0.03] to-transparent blur-[140px] pointer-events-none z-0" />
-      
+
       {/* Decorative vertical lines on the sides for desktop structure */}
       <div className="absolute left-[-20px] top-0 bottom-0 w-[1px] bg-gradient-to-b from-transparent via-white/5 to-transparent hidden xl:block" />
       <div className="absolute right-[-20px] top-0 bottom-0 w-[1px] bg-gradient-to-b from-transparent via-white/5 to-transparent hidden xl:block" />
@@ -70,8 +88,10 @@ function ProjectsComponent() {
       <div className="flex flex-col gap-10 sm:gap-14 w-full relative z-10">
         <AnimatePresence mode="popLayout">
           {visibleProjects.map((project, index) => {
-            const subtitle = project.subtitle || "Featured Engineering Application";
+            const subtitle =
+              project.subtitle || "Featured Engineering Application";
             const features = project.features || [];
+            const projectImg = projectImageMap[project.id] || project.image;
 
             return (
               <motion.div
@@ -81,26 +101,28 @@ function ProjectsComponent() {
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true, margin: "-80px" }}
                 transition={{ duration: 0.6 }}
-                className="flex flex-col lg:flex-row gap-10 lg:gap-16 items-center w-full p-6 sm:p-8 lg:p-10 rounded-3xl border border-white/[0.02] bg-white/[0.01] hover:bg-white/[0.02] hover:border-white/[0.07] transition-all duration-500 relative group/card shadow-2xl overflow-hidden"
+                className={`flex flex-col ${
+                  index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
+                } gap-10 lg:gap-16 items-center w-full p-6 sm:p-8 lg:p-10 rounded-3xl border border-white/[0.02] bg-white/[0.01] hover:bg-white/[0.02] hover:border-white/[0.07] transition-all duration-500 relative group/card shadow-2xl overflow-hidden`}
               >
                 {/* Dynamic Radial Ambient Spotlight following card hover in gold/amber */}
                 <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-gradient-to-br from-amber-500/5 to-yellow-500/5 rounded-full blur-3xl pointer-events-none opacity-0 group-hover/card:opacity-100 transition-opacity duration-700 z-0" />
 
                 {/* Left Block: Landscape Preview Image with Left-to-Center Animation */}
                 <motion.div
-                  initial={{ x: -80, opacity: 0 }}
+                  initial={{ x: index % 2 === 0 ? -80 : 80, opacity: 0 }}
                   whileInView={{ x: 0, opacity: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.7, ease: "easeOut" }}
                   className="w-full lg:w-[48%] aspect-[16/10] sm:aspect-[16/9] lg:aspect-[16/10] overflow-hidden rounded-2xl border border-white/10 shadow-2xl relative group bg-black/40 shrink-0 z-10"
                 >
                   <img
-                    src={project.image}
+                    src={projectImg}
                     alt={project.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                    className="w-full h-full object-fill transition-transform duration-700 group-hover:scale-[1.03]"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/10 to-transparent opacity-60" />
-                  
+
                   {/* Floating Category Tag */}
                   <span className="absolute top-4 left-4 bg-black/80 backdrop-blur-md border border-white/5 text-[9px] uppercase tracking-widest font-extrabold text-amber-400 py-1.5 px-3.5 rounded-full">
                     {project.category}
@@ -109,7 +131,7 @@ function ProjectsComponent() {
 
                 {/* Right Block: Content Details with Right-to-Center Animation */}
                 <motion.div
-                  initial={{ x: 80, opacity: 0 }}
+                  initial={{ x: index % 2 === 0 ? 80 : -80, opacity: 0 }}
                   whileInView={{ x: 0, opacity: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.7, ease: "easeOut" }}
@@ -131,13 +153,21 @@ function ProjectsComponent() {
                           key={key}
                           className="flex items-center gap-1.5 bg-white/[0.03] border border-white/5 rounded-md px-2.5 py-1 text-[10px] font-bold text-gray-400 uppercase tracking-wider transition-all duration-300 hover:bg-white/[0.06] hover:border-white/10"
                         >
-                          {key === "performance" || key === "accuracy" || key === "score" || key === "optimization" || key === "animation" || key === "engine" ? (
+                          {key === "performance" ||
+                          key === "accuracy" ||
+                          key === "score" ||
+                          key === "optimization" ||
+                          key === "animation" ||
+                          key === "engine" ? (
                             <Activity className="w-3.5 h-3.5 text-emerald-400" />
                           ) : (
                             <Award className="w-3.5 h-3.5 text-[#D6A45C]" />
                           )}
                           <span>
-                            {key}: <span className="text-white font-semibold">{val}</span>
+                            {key}:{" "}
+                            <span className="text-white font-semibold">
+                              {val}
+                            </span>
                           </span>
                         </div>
                       ))}
@@ -155,7 +185,10 @@ function ProjectsComponent() {
                   {/* Bullets with rotating CSS diamonds */}
                   <ul className="flex flex-col gap-3 mb-6">
                     {features.map((feature, i) => (
-                      <li key={i} className="flex items-center gap-3 text-xs sm:text-sm text-neutral-300 font-light">
+                      <li
+                        key={i}
+                        className="flex items-center gap-3 text-xs sm:text-sm text-neutral-300 font-light"
+                      >
                         {/* 45-degree rotated CSS square forms a perfect diamond! */}
                         <span className="flex-shrink-0 w-2 h-2 rotate-45 bg-gradient-to-r from-amber-500 to-yellow-500 rounded-sm" />
                         <span>{feature}</span>
@@ -210,9 +243,15 @@ function ProjectsComponent() {
             <span>{showAll ? "Show Less" : "View More Projects"}</span>
             <motion.span
               animate={{ y: showAll ? -2 : 2 }}
-              transition={{ repeat: Infinity, repeatType: "reverse", duration: 0.8 }}
+              transition={{
+                repeat: Infinity,
+                repeatType: "reverse",
+                duration: 0.8,
+              }}
             >
-              <ArrowDown className={`w-3.5 h-3.5 transition-transform duration-300 ${showAll ? "rotate-180" : ""}`} />
+              <ArrowDown
+                className={`w-3.5 h-3.5 transition-transform duration-300 ${showAll ? "rotate-180" : ""}`}
+              />
             </motion.span>
           </button>
         </div>
@@ -222,4 +261,3 @@ function ProjectsComponent() {
 }
 
 export const Projects = SectionWrapper(ProjectsComponent, "projects");
-
