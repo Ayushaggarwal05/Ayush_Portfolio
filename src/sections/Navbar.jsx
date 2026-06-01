@@ -7,19 +7,18 @@ import {
   User,
   Sparkles,
   Code,
-  History,
   Briefcase,
   Mail,
   ChevronDown,
 } from "lucide-react";
 import { useActiveSection } from "../hooks/useActiveSection";
+import logoName from "../assets/logo_name.png";
 
 const navLinks = [
   { id: "home", label: "Home", icon: Home },
   { id: "about", label: "About", icon: User, hasDropdown: true },
   { id: "services", label: "Expertise", icon: Sparkles },
   { id: "skills", label: "Skills", icon: Code },
-  { id: "experience", label: "Experience", icon: History },
   { id: "projects", label: "Work", icon: Briefcase },
   { id: "contact", label: "Contact", icon: Mail },
 ];
@@ -78,12 +77,11 @@ export function Navbar() {
           onClick={(e) => handleNavClick(e, "home")}
           className="flex items-center gap-2 group transition-all duration-300 hover:opacity-90 select-none py-1"
         >
-          <div className="relative flex items-center justify-center">
-            <span className="w-1.5 h-1.5 rounded-full bg-amber-400 shadow-[0_0_10px_#fbbf24] group-hover:scale-125 transition-transform duration-300 animate-pulse" />
-          </div>
-          <span className="font-serif italic font-extrabold text-2xl tracking-tighter text-white group-hover:text-amber-400 transition-colors duration-300">
-            AA
-          </span>
+          <img
+            src={logoName}
+            alt="Logo"
+            className="h-14 sm:h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+          />
         </a>
 
         {/* Desktop Navigation Links (Pill Style) */}

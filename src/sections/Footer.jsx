@@ -2,6 +2,7 @@ import { useState } from "react";
 import { ArrowUp, Mail, MapPin, Send, CheckCircle2, Terminal, ExternalLink } from "lucide-react";
 import { Github, Linkedin, Twitter } from "../components/SocialIcon";
 import { portfolioData } from "../data/portfolioData";
+import logoName from "../assets/logo_name.png";
 
 export function Footer() {
   const { name, github, linkedin, twitter, email, location, tagline } = portfolioData.personalInfo;
@@ -74,12 +75,11 @@ export function Footer() {
               onClick={scrollToTop}
               className="flex items-center gap-2 group transition-all duration-300 select-none"
             >
-              <div className="relative flex items-center justify-center">
-                <span className="w-1.5 h-1.5 rounded-full bg-amber-400 shadow-[0_0_10px_#fbbf24] group-hover:scale-125 transition-transform duration-300 animate-pulse" />
-              </div>
-              <span className="font-serif italic font-extrabold text-2xl tracking-tighter text-white group-hover:text-amber-400 transition-colors duration-300">
-                AA
-              </span>
+              <img
+                src={logoName}
+                alt="Logo"
+                className="h-14 sm:h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+              />
             </a>
 
             {/* Status availability badge */}
@@ -136,7 +136,6 @@ export function Footer() {
                 { id: "about", label: "About" },
                 { id: "services", label: "Expertise" },
                 { id: "skills", label: "Skills" },
-                { id: "experience", label: "Experience" },
                 { id: "projects", label: "Work" },
                 { id: "contact", label: "Contact" },
               ].map((link) => (
