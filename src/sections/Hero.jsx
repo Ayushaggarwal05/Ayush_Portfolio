@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { portfolioData } from "../data/portfolioData";
 import { fadeIn, staggerContainer } from "../utils/motion";
+import { scrollToSection } from "../utils/scroll";
 import { Button } from "../components/Button";
 import LightRays from "../components/LightRays";
 
@@ -10,19 +11,7 @@ export function Hero() {
 
   const handleScrollTo = (e, id) => {
     e.preventDefault();
-    const element = document.getElementById(id);
-    if (element) {
-      const offset = 80;
-      const bodyRect = document.body.getBoundingClientRect().top;
-      const elementRect = element.getBoundingClientRect().top;
-      const elementPosition = elementRect - bodyRect;
-      const offsetPosition = elementPosition - offset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth",
-      });
-    }
+    scrollToSection(id, 80);
   };
 
   return (

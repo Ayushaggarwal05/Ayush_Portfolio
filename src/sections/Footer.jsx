@@ -1,11 +1,21 @@
 import { useState } from "react";
-import { ArrowUp, Mail, MapPin, Send, CheckCircle2, Terminal, ExternalLink } from "lucide-react";
+import {
+  ArrowUp,
+  Mail,
+  MapPin,
+  Send,
+  CheckCircle2,
+  Terminal,
+  ExternalLink,
+} from "lucide-react";
 import { Github, Linkedin, Twitter } from "../components/SocialIcon";
 import { portfolioData } from "../data/portfolioData";
+import { scrollToSection } from "../utils/scroll";
 import logoName from "../assets/logo_name.png";
 
 export function Footer() {
-  const { name, github, linkedin, twitter, email, location, tagline } = portfolioData.personalInfo;
+  const { name, github, linkedin, twitter, email, location, tagline } =
+    portfolioData.personalInfo;
 
   const [subscribeEmail, setSubscribeEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
@@ -13,40 +23,29 @@ export function Footer() {
 
   const scrollToTop = (e) => {
     e.preventDefault();
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
+    if (window.__lenis) {
+      window.__lenis.scrollTo(0, { duration: 1.2 });
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
   };
 
   const handleNavClick = (e, id) => {
     e.preventDefault();
-    const element = document.getElementById(id);
-    if (element) {
-      const offset = 80; // height of the navbar
-      const bodyRect = document.body.getBoundingClientRect().top;
-      const elementRect = element.getBoundingClientRect().top;
-      const elementPosition = elementRect - bodyRect;
-      const offsetPosition = elementPosition - offset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth",
-      });
-    }
+    scrollToSection(id, 80);
   };
 
   const handleSubscribe = (e) => {
     e.preventDefault();
     if (!subscribeEmail) return;
     setLoading(true);
-    
+
     // Simulate premium backend subscription call
     setTimeout(() => {
       setLoading(false);
       setSubscribed(true);
       setSubscribeEmail("");
-      
+
       // Reset success status after a while
       setTimeout(() => {
         setSubscribed(false);
@@ -58,15 +57,13 @@ export function Footer() {
     <footer className="w-full border-t border-white/[0.05] bg-[#070707] relative pt-20 pb-10 overflow-hidden">
       {/* Premium backdrop ambient glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[250px] bg-gradient-to-b from-[#D6A45C]/5 via-[#6E1126]/5 to-transparent rounded-full blur-[100px] pointer-events-none -z-10" />
-      
+
       {/* Decorative Grid Texture */}
       <div className="absolute inset-0 bg-radial-grid opacity-20 pointer-events-none -z-10" />
 
       <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-16 w-full relative z-10">
-        
         {/* Main 4-Column Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 pb-16">
-          
           {/* Column 1: Brand & Status Capsule */}
           <div className="flex flex-col items-start gap-4">
             {/* Logo / Brand Name */}
@@ -199,7 +196,10 @@ export function Footer() {
 
             {/* Subscribe container */}
             <form onSubmit={handleSubscribe} className="relative w-full">
-              <label htmlFor="footer-subscribe" className="text-[10px] text-neutral-500 font-bold tracking-wider uppercase mb-2 block">
+              <label
+                htmlFor="footer-subscribe"
+                className="text-[10px] text-neutral-500 font-bold tracking-wider uppercase mb-2 block"
+              >
                 Stay updated
               </label>
               <div className="relative flex items-center">
@@ -235,7 +235,6 @@ export function Footer() {
               )}
             </form>
           </div>
-
         </div>
 
         {/* Bottom Horizontal Divider */}
@@ -265,4 +264,3 @@ export function Footer() {
     </footer>
   );
 }
-

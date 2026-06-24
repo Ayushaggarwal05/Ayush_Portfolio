@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import {
   Menu,
   X,
@@ -12,6 +13,7 @@ import {
   ChevronDown,
 } from "lucide-react";
 import { useActiveSection } from "../hooks/useActiveSection";
+import { scrollToSection } from "../utils/scroll";
 import logoName from "../assets/logo_name.png";
 
 const navLinks = [
@@ -28,7 +30,7 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
 
   const sectionIds = navLinks.map((link) => link.id);
-  const activeSection = useActiveSection(sectionIds);
+  const activeSection = useActiveSection(sectionIds, 100);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -46,19 +48,7 @@ export function Navbar() {
   const handleNavClick = (e, id) => {
     e.preventDefault();
     setIsOpen(false);
-    const element = document.getElementById(id);
-    if (element) {
-      const offset = 80; // height of the navbar
-      const bodyRect = document.body.getBoundingClientRect().top;
-      const elementRect = element.getBoundingClientRect().top;
-      const elementPosition = elementRect - bodyRect;
-      const offsetPosition = elementPosition - offset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth",
-      });
-    }
+    scrollToSection(id, 80);
   };
 
   return (
@@ -84,32 +74,49 @@ export function Navbar() {
           />
         </a>
 
-        {/* Desktop Navigation Links (Pill Style) */}
+        {/* Desktop Navigation Links — sliding pill via Framer Motion layoutId */}
         <div className="hidden md:flex bg-neutral-900/60 border border-white/[0.08] backdrop-blur-md rounded-full p-1.5 items-center gap-1 shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
           <ul className="flex items-center gap-0.5">
             {navLinks.map((link) => {
               const IconComponent = link.icon;
               const isActive = activeSection === link.id;
               return (
-                <li key={link.id}>
+                <li key={link.id} className="relative">
+                  {/* Sliding background pill — animates between active items */}
+                  {isActive && (
+                    <motion.span
+                      layoutId="nav-active-pill"
+                      className="absolute inset-0 rounded-full bg-white/[0.08] border border-white/10 shadow-[inset_0_1px_1px_rgba(255,255,255,0.08)]"
+                      transition={{
+                        type: "spring",
+                        stiffness: 380,
+                        damping: 30,
+                        mass: 0.8,
+                      }}
+                    />
+                  )}
                   <a
                     href={`#${link.id}`}
                     onClick={(e) => handleNavClick(e, link.id)}
-                    className={`text-xs lg:text-sm font-medium tracking-wide transition-all duration-300 py-1.5 px-3 lg:px-4 rounded-full flex items-center gap-1.5 lg:gap-2 relative group ${
+                    className={`relative z-10 text-xs lg:text-sm font-medium tracking-wide transition-colors duration-200 py-1.5 px-3 lg:px-4 rounded-full flex items-center gap-1.5 lg:gap-2 group ${
                       isActive
-                        ? "text-white bg-white/[0.08] border border-white/10 shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)]"
-                        : "text-neutral-400 hover:text-white hover:bg-white/[0.03]"
+                        ? "text-white"
+                        : "text-neutral-400 hover:text-white"
                     }`}
                   >
                     {IconComponent && (
                       <IconComponent
-                        className={`w-3.5 h-3.5 lg:w-4 lg:h-4 ${isActive ? "text-white" : "text-neutral-400 group-hover:text-white"} transition-colors duration-300`}
+                        className={`w-3.5 h-3.5 lg:w-4 lg:h-4 ${
+                          isActive ? "text-white" : "text-neutral-400 group-hover:text-white"
+                        } transition-colors duration-200`}
                       />
                     )}
                     <span>{link.label}</span>
                     {link.hasDropdown && (
                       <ChevronDown
-                        className={`w-3 h-3 lg:w-3.5 lg:h-3.5 ${isActive ? "text-white" : "text-neutral-500 group-hover:text-white"} transition-colors duration-300 ml-0.5`}
+                        className={`w-3 h-3 lg:w-3.5 lg:h-3.5 ${
+                          isActive ? "text-white" : "text-neutral-500 group-hover:text-white"
+                        } transition-colors duration-200 ml-0.5`}
                       />
                     )}
                   </a>

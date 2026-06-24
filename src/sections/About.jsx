@@ -34,7 +34,7 @@ function AboutComponent() {
           >
             {/* Top right decorative ambient gradient glow */}
             <div className="absolute top-0 right-0 w-48 h-48 bg-[#6E1126]/5 rounded-full blur-3xl pointer-events-none group-hover:bg-[#6E1126]/10 transition-all duration-500" />
- 
+
             {/* Upper Badge & Heading */}
             <div className="flex flex-col gap-3">
               <div className="inline-flex items-center gap-1.5 self-start py-1 px-3 rounded-full bg-[#6E1126]/10 border border-[#6E1126]/20 text-[10px] font-bold text-[#D6A45C] uppercase tracking-widest">
@@ -106,10 +106,10 @@ function AboutComponent() {
               >
                 {/* Spotlight Background Glow */}
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[radial-gradient(circle_at_center,rgba(214,164,92,0.06)_0%,transparent_70%)] pointer-events-none" />
- 
+
                 {/* Animated Top Border Line */}
                 <div className="absolute top-0 left-0 w-full h-[2.5px] bg-gradient-to-r from-transparent via-[#D6A45C]/40 to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-center" />
- 
+
                 {/* Stat Value with customized neon gradient text */}
                 <span className="text-3xl sm:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-br from-white via-neutral-200 to-[#D6A45C] mb-1 group-hover:from-[#D6A45C] group-hover:to-[#F5F2EE] transition-all duration-500 font-sans tracking-tight">
                   {stat.value}
