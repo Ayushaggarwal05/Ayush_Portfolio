@@ -132,13 +132,17 @@ export function Navbar() {
         <a
           href="#contact"
           onClick={(e) => handleNavClick(e, "contact")}
-          className="relative group overflow-hidden text-xs font-semibold uppercase tracking-wider py-2 px-4 rounded-full text-white border border-white/10 bg-white/5 hover:bg-white/10 backdrop-blur-md transition-all duration-300 hidden md:flex items-center gap-1.5 shadow-[0_2px_10px_rgba(0,0,0,0.2)] hover:border-[#D6A45C]/40 hover:shadow-[0_0_15px_rgba(214,164,92,0.2)]"
+          className="relative group overflow-hidden text-xs font-semibold uppercase tracking-wider py-2.5 px-5 rounded-full text-white border border-[#D6A45C]/35 bg-white/5 hover:bg-white/10 backdrop-blur-md transition-all duration-300 hidden md:flex items-center gap-2 shadow-[0_0_15px_rgba(214,164,92,0.12)] hover:border-[#D6A45C]/60 hover:shadow-[0_0_25px_rgba(214,164,92,0.45),inset_0_0_8px_rgba(214,164,92,0.1)] hover:scale-[1.02] active:scale-[0.98]"
         >
+          {/* Internal glowing backdrop */}
+          <span className="absolute inset-0 -z-10 rounded-full bg-gradient-to-r from-[#D6A45C]/15 to-[#6E1126]/15 opacity-60 group-hover:opacity-100 transition-opacity duration-500" />
+          
           <span className="relative z-10 flex items-center gap-1.5">
-            Hire Me
+            <span className="w-1.5 h-1.5 rounded-full bg-[#D6A45C] animate-pulse shadow-[0_0_8px_#D6A45C]" />
+            <span>Hire Me</span>
             <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
           </span>
-          <span className="absolute inset-0 -translate-x-full group-hover:translate-x-0 bg-gradient-to-r from-[#D6A45C]/10 to-[#6E1126]/10 transition-transform duration-500 ease-out" />
+          <span className="absolute inset-0 -translate-x-full group-hover:translate-x-0 bg-gradient-to-r from-[#D6A45C]/20 to-[#6E1126]/20 transition-transform duration-500 ease-out" />
         </a>
 
         {/* Mobile Menu Toggle Button */}
