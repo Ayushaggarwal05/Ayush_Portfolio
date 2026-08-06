@@ -92,11 +92,11 @@ export function Hero() {
           >
             <span>Full Stack </span>
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#D6A45C] to-[#F5F2EE] font-extrabold">
-              Engineer
+              Developer
             </span>
             <span className="text-neutral-500 font-medium"> & </span>
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#6E1126] via-[#D6A45C] to-[#F5F2EE] font-black">
-              AIML Enthusiast
+              AI Engineer
             </span>
           </motion.p>
 

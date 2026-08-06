@@ -133,6 +133,7 @@ export function Footer() {
                 { id: "about", label: "About" },
                 { id: "services", label: "Expertise" },
                 { id: "skills", label: "Skills" },
+                { id: "experience", label: "Experience" },
                 { id: "projects", label: "Work" },
                 { id: "contact", label: "Contact" },
               ].map((link) => (

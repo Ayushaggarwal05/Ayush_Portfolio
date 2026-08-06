@@ -11,6 +11,7 @@ import {
   Briefcase,
   Mail,
   ChevronDown,
+  FolderGit,
 } from "lucide-react";
 import { useActiveSection } from "../hooks/useActiveSection";
 import { scrollToSection } from "../utils/scroll";
@@ -21,7 +22,8 @@ const navLinks = [
   { id: "about", label: "About", icon: User, hasDropdown: true },
   { id: "services", label: "Expertise", icon: Sparkles },
   { id: "skills", label: "Skills", icon: Code },
-  { id: "projects", label: "Work", icon: Briefcase },
+  { id: "experience", label: "Experience", icon: Briefcase },
+  { id: "projects", label: "Work", icon: FolderGit },
   { id: "contact", label: "Contact", icon: Mail },
 ];
 

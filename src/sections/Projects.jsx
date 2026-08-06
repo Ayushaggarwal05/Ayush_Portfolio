@@ -14,12 +14,12 @@ import travellerImg from "../assets/projects_ss/Traveller_ss.webp";
 import gameImg from "../assets/projects_ss/game_ss.png";
 
 const projectImageMap = {
-  "proj-1": crewflowImg,
-  "proj-2": kisanSaathiImg,
-  "proj-3": netflixGptImg,
-  "proj-4": ryzeRedesignImg,
-  "proj-5": travellerImg,
-  "proj-6": gameImg,
+  "proj-3": crewflowImg,
+  "proj-4": kisanSaathiImg,
+  "proj-5": netflixGptImg,
+  "proj-6": ryzeRedesignImg,
+  "proj-7": travellerImg,
+  "proj-8": gameImg,
 };
 
 function ProjectsComponent() {
