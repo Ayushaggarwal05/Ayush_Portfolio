@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Card } from "./Card";
 import { portfolioData } from "../data/portfolioData";
 import {
@@ -50,6 +51,15 @@ export function ProfileCard({
     status,
     expertise,
   } = portfolioData.personalInfo;
+
+  const [copied, setCopied] = useState(false);
+
+  const handleCopyEmail = (e) => {
+    const cleanEmail = email.startsWith("mailto:") ? email.replace("mailto:", "") : email;
+    navigator.clipboard.writeText(cleanEmail);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
 
   return (
     <Card
@@ -144,13 +154,21 @@ export function ProfileCard({
             </a>
           )}
           {email && (
-            <a
-              href={`mailto:${email}`}
-              className="p-3 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/20 text-gray-400 hover:text-[#D6A45C] shadow-md hover:shadow-[0_0_15px_rgba(214,164,92,0.25)] hover:scale-105 transition-all duration-300 flex items-center justify-center"
-              aria-label="Email Address"
-            >
-              <Mail className="w-4 h-4" />
-            </a>
+            <div className="relative group/email">
+              <a
+                href={email.startsWith("mailto:") ? email : `mailto:${email}`}
+                onClick={handleCopyEmail}
+                className="p-3 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/20 text-gray-400 hover:text-[#D6A45C] shadow-md hover:shadow-[0_0_15px_rgba(214,164,92,0.25)] hover:scale-105 transition-all duration-300 flex items-center justify-center"
+                aria-label="Email Address"
+              >
+                <Mail className="w-4 h-4" />
+              </a>
+              {copied && (
+                <span className="absolute -top-10 left-1/2 -translate-x-1/2 text-[9px] text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded shadow-lg backdrop-blur-md animate-bounce whitespace-nowrap z-30">
+                  Copied!
+                </span>
+              )}
+            </div>
           )}
         </div>
       </div>

@@ -179,13 +179,15 @@ export function Footer() {
             {/* Email and location rows */}
             <div className="flex flex-col gap-3 w-full mb-6">
               <a
-                href={`mailto:${email}`}
+                href={email.startsWith("mailto:") ? email : `mailto:${email}`}
                 className="flex items-center gap-3 text-xs sm:text-sm text-neutral-400 hover:text-amber-400 transition-all duration-300 group"
               >
                 <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/[0.05] flex items-center justify-center group-hover:border-amber-400/20 group-hover:bg-amber-400/5 transition-all duration-300 shrink-0">
                   <Mail className="w-3.5 h-3.5 text-neutral-400 group-hover:text-amber-400 transition-colors duration-300" />
                 </div>
-                <span className="truncate select-all">{email}</span>
+                <span className="truncate select-all">
+                  {email.startsWith("mailto:") ? email.replace("mailto:", "") : email}
+                </span>
               </a>
               <div className="flex items-center gap-3 text-xs sm:text-sm text-neutral-400 cursor-default shrink-0">
                 <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/[0.05] flex items-center justify-center">

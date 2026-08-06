@@ -20,15 +20,28 @@ function ContactComponent() {
     message: "",
   });
   const [submitted, setSubmitted] = useState(false);
+  const [copied, setCopied] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Simulate premium submission response
+    const cleanEmail = email.startsWith("mailto:") ? email.replace("mailto:", "") : email;
+    const mailtoUrl = `mailto:${cleanEmail}?subject=${encodeURIComponent(formData.subject || "Contact from Portfolio")}&body=${encodeURIComponent(
+      `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
+    )}`;
+    window.location.href = mailtoUrl;
+
     setSubmitted(true);
     setTimeout(() => {
       setSubmitted(false);
       setFormData({ name: "", email: "", subject: "", message: "" });
     }, 3000);
+  };
+
+  const handleCopyEmail = (e) => {
+    const cleanEmail = email.startsWith("mailto:") ? email.replace("mailto:", "") : email;
+    navigator.clipboard.writeText(cleanEmail);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
   };
 
   const handleChange = (e) => {
@@ -88,10 +101,20 @@ function ContactComponent() {
                     Email Me
                   </p>
                   <a
-                    href={`mailto:${email}`}
-                    className="text-xs sm:text-sm font-semibold text-gray-200 hover:text-white transition-all"
+                    href={email.startsWith("mailto:") ? email : `mailto:${email}`}
+                    onClick={handleCopyEmail}
+                    className="text-xs sm:text-sm font-semibold text-gray-200 hover:text-white transition-all flex items-center gap-2 group/email"
                   >
-                    {email}
+                    <span>{email.startsWith("mailto:") ? email.replace("mailto:", "") : email}</span>
+                    {copied ? (
+                      <span className="text-[9px] text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-1.5 py-0.5 rounded animate-pulse">
+                        Copied!
+                      </span>
+                    ) : (
+                      <span className="text-[8px] text-neutral-500 group-hover/email:text-neutral-300 transition-colors opacity-0 group-hover/email:opacity-100 px-1 py-0.5 border border-white/5 rounded">
+                        Click to copy
+                      </span>
+                    )}
                   </a>
                 </div>
               </div>
