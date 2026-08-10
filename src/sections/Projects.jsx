@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ExternalLink, ArrowDown, Activity, Award } from "lucide-react";
+import { ExternalLink, ArrowDown, Activity, Award, ChevronLeft, ChevronRight } from "lucide-react";
 import { Github } from "../components/SocialIcon";
 import { SectionWrapper } from "../layouts/SectionWrapper";
 import { SectionHeader } from "../components/SectionHeader";
@@ -85,6 +85,18 @@ function ProjectCard({ project, index, projectImg, insights }) {
   const subtitle = project.subtitle || "Featured Engineering Application";
   const features = project.features || [];
 
+  const nextImage = (e) => {
+    e.stopPropagation();
+    if (!insights || insights.length === 0) return;
+    setActiveTabIndex((prev) => (prev + 1) % insights.length);
+  };
+
+  const prevImage = (e) => {
+    e.stopPropagation();
+    if (!insights || insights.length === 0) return;
+    setActiveTabIndex((prev) => (prev - 1 + insights.length) % insights.length);
+  };
+
   return (
     <motion.div
       layout
@@ -125,34 +137,61 @@ function ProjectCard({ project, index, projectImg, insights }) {
           <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/10 to-transparent opacity-60 pointer-events-none" />
 
           {/* Floating Category Tag */}
-          <span className="absolute top-4 left-4 bg-black/80 backdrop-blur-md border border-white/5 text-[9px] uppercase tracking-widest font-extrabold text-amber-400 py-1.5 px-3.5 rounded-full">
+          <span className="absolute top-4 left-4 bg-black/80 backdrop-blur-md border border-white/5 text-[9px] uppercase tracking-widest font-extrabold text-amber-400 py-1.5 px-3.5 rounded-full z-20">
             {project.category}
           </span>
+
+          {/* Floating Navigation Controls (only if there are multiple insights) */}
+          {insights && insights.length > 1 && (
+            <>
+              {/* Left Arrow */}
+              <button
+                type="button"
+                onClick={prevImage}
+                className="absolute left-4 top-1/2 -translate-y-1/2 p-2.5 rounded-full border border-white/10 bg-black/60 backdrop-blur-md text-neutral-400 hover:text-white hover:border-amber-500/50 hover:shadow-[0_0_15px_rgba(214,164,92,0.3)] transition-all duration-300 opacity-0 group-hover:opacity-100 cursor-pointer z-20"
+                aria-label="Previous image"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+
+              {/* Right Arrow */}
+              <button
+                type="button"
+                onClick={nextImage}
+                className="absolute right-4 top-1/2 -translate-y-1/2 p-2.5 rounded-full border border-white/10 bg-black/60 backdrop-blur-md text-neutral-400 hover:text-white hover:border-amber-500/50 hover:shadow-[0_0_15px_rgba(214,164,92,0.3)] transition-all duration-300 opacity-0 group-hover:opacity-100 cursor-pointer z-20"
+                aria-label="Next image"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </button>
+
+              {/* Glassmorphic Info Badge Overlay */}
+              <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between pointer-events-none z-20">
+                <span className="bg-black/75 backdrop-blur-md border border-white/10 text-[10px] font-semibold tracking-wider text-white px-3.5 py-1.5 rounded-full shadow-lg flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
+                  <span>
+                    {insights[activeTabIndex].label} • {activeTabIndex + 1} of {insights.length}
+                  </span>
+                </span>
+              </div>
+            </>
+          )}
         </motion.div>
 
-        {/* Feature Tabs row - only rendered if there's more than 1 insight */}
+        {/* Carousel Dash Indicators (only if there are multiple insights) */}
         {insights && insights.length > 1 && (
-          <div className="flex flex-wrap items-center gap-2 mt-1">
+          <div className="flex items-center justify-center gap-1.5 mt-2 select-none">
             {insights.map((insight, tIndex) => (
               <button
                 key={insight.label}
+                type="button"
                 onClick={() => setActiveTabIndex(tIndex)}
-                className={`relative px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider border transition-all duration-300 cursor-pointer ${
+                className={`h-1.5 rounded-full transition-all duration-500 cursor-pointer ${
                   activeTabIndex === tIndex
-                    ? "text-white border-transparent bg-gradient-to-r from-amber-500 to-orange-500 shadow-md shadow-amber-500/10"
-                    : "text-neutral-400 border-white/5 bg-white/[0.02] hover:text-white hover:border-white/10"
+                    ? "w-8 bg-gradient-to-r from-amber-500 to-orange-500 shadow-[0_0_10px_rgba(245,158,11,0.4)]"
+                    : "w-2 bg-white/10 hover:bg-white/20"
                 }`}
-              >
-                {/* Active sliding indicator backdrop (Framer Motion layoutId) */}
-                {activeTabIndex === tIndex && (
-                  <motion.span
-                    layoutId={`active-tab-indicator-${project.id}`}
-                    className="absolute inset-0 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 -z-10"
-                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                  />
-                )}
-                <span className="relative z-10">{insight.label}</span>
-              </button>
+                aria-label={`Go to slide ${tIndex + 1}`}
+              />
             ))}
           </div>
         )}
