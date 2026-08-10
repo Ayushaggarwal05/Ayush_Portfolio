@@ -6,21 +6,7 @@ import { SectionWrapper } from "../layouts/SectionWrapper";
 import { SectionHeader } from "../components/SectionHeader";
 import { portfolioData } from "../data/portfolioData";
 
-import crewflowImg from "../assets/projects_ss/crewflow/overview.webp";
-import kisanSaathiImg from "../assets/projects_ss/kisansaathi/overview.webp";
-import netflixGptImg from "../assets/projects_ss/netflixgpt/overview.webp";
-import ryzeRedesignImg from "../assets/projects_ss/ryzeredesign/overview.webp";
-import travellerImg from "../assets/projects_ss/traveller/overview.webp";
-import gameImg from "../assets/projects_ss/game/overview.webp";
 
-const projectImageMap = {
-  "proj-3": crewflowImg,
-  "proj-4": kisanSaathiImg,
-  "proj-5": netflixGptImg,
-  "proj-6": ryzeRedesignImg,
-  "proj-7": travellerImg,
-  "proj-8": gameImg,
-};
 
 // Scan all image files inside projects_ss subfolders
 const projectImages = import.meta.glob("../assets/projects_ss/**/*.{png,jpg,jpeg,webp}", {
@@ -338,7 +324,6 @@ function ProjectsComponent() {
       <div className="flex flex-col gap-10 sm:gap-14 w-full relative z-10">
         <AnimatePresence mode="popLayout">
           {visibleProjects.map((project, index) => {
-            const projectImg = projectImageMap[project.id] || project.image;
             const insights = projectInsightsMap[project.id];
 
             return (
@@ -346,7 +331,7 @@ function ProjectsComponent() {
                 key={project.id}
                 project={project}
                 index={index}
-                projectImg={projectImg}
+                projectImg={project.image}
                 insights={insights}
               />
             );

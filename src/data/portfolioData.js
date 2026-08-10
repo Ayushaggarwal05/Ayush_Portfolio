@@ -1,4 +1,12 @@
 import profileimg from "../assets/profileimg.webp";
+import astaImg from "../assets/projects_ss/asta/1_overview.webp";
+import spatialstudioImg from "../assets/projects_ss/spatialstudio/1_landing-page.webp";
+import crewflowImg from "../assets/projects_ss/crewflow/1_landing-page.webp";
+import kisanSaathiImg from "../assets/projects_ss/kisansaathi/overview.webp";
+import netflixGptImg from "../assets/projects_ss/netflixgpt/overview.webp";
+import ryzeRedesignImg from "../assets/projects_ss/ryzeredesign/overview.webp";
+import travellerImg from "../assets/projects_ss/traveller/overview.webp";
+import gameImg from "../assets/projects_ss/game/overview.webp";
 
 export const portfolioData = {
   personalInfo: {
@@ -163,8 +171,7 @@ export const portfolioData = {
         "Hybrid RAG with semantic and keyword-based retrieval",
         "Optimized local LLM inference using Ollama",
       ],
-      image:
-        "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=600&q=80",
+      image: astaImg,
       tags: ["Python", "FastAPI", "React", "SQLite", "LanceDB", "Ollama"],
       stats: { architecture: "Multi-Agent", retrieval: "Hybrid RAG" },
       liveUrl: "#",
@@ -183,8 +190,7 @@ export const portfolioData = {
         "AI-generated interior redesigns from user prompts",
         "Layout optimization using occupancy analysis",
       ],
-      image:
-        "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=600&q=80",
+      image: spatialstudioImg,
       tags: ["FastAPI", "OpenCV", "YOLO", "PyTorch", "PostgreSQL", "Docker"],
       stats: { ai: "Generative + CV", optimization: "Spatial Analysis" },
       liveUrl: "#",
@@ -202,8 +208,7 @@ export const portfolioData = {
         "Hierarchical role-based access control (RBAC)",
         "Interactive Kanban boards with drag-and-drop support",
       ],
-      image:
-        "https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=600&q=80",
+      image: crewflowImg,
       tags: [
         "Django",
         "React",
@@ -228,8 +233,7 @@ export const portfolioData = {
         "Live Mandi price tracking and visualization",
         "Localized weather forecasts and farming insights",
       ],
-      image:
-        "https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=600&q=80",
+      image: kisanSaathiImg,
       tags: [
         "React",
         "Node.js",
@@ -254,8 +258,7 @@ export const portfolioData = {
         "TMDB integration with trailer playback",
         "Secure authentication and multilingual support",
       ],
-      image:
-        "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=600&q=80",
+      image: netflixGptImg,
       tags: [
         "React",
         "Gemini AI",
@@ -280,8 +283,7 @@ export const portfolioData = {
         "Framer Motion micro-interactions",
         "Responsive and reusable component architecture",
       ],
-      image:
-        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80",
+      image: ryzeRedesignImg,
       tags: ["React", "GSAP", "Framer Motion", "Tailwind CSS", "React Router"],
       stats: { animation: "GSAP 3", UX: "Modern" },
       liveUrl: "https://ryze-redesign-website.vercel.app/",
@@ -299,8 +301,7 @@ export const portfolioData = {
         "Travel route and transportation comparison",
         "Multilingual interface with responsive design",
       ],
-      image:
-        "https://images.unsplash.com/photo-1506461883276-594a12b11db3?auto=format&fit=crop&w=600&q=80",
+      image: travellerImg,
       tags: [
         "React",
         "Node.js",
@@ -325,8 +326,7 @@ export const portfolioData = {
         "Smooth CSS animations and transitions",
         "Real-time score tracking using JavaScript",
       ],
-      image:
-        "https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?auto=format&fit=crop&w=600&q=80",
+      image: gameImg,
       tags: [
         "HTML5",
         "CSS3",
