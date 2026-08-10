@@ -15,7 +15,7 @@ import {
 } from "lucide-react";
 import { useActiveSection } from "../hooks/useActiveSection";
 import { scrollToSection } from "../utils/scroll";
-import logoName from "../assets/logo_name.png";
+import logoName from "../assets/logo_name.webp";
 
 const navLinks = [
   { id: "home", label: "Home", icon: Home },

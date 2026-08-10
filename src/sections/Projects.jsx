@@ -6,12 +6,12 @@ import { SectionWrapper } from "../layouts/SectionWrapper";
 import { SectionHeader } from "../components/SectionHeader";
 import { portfolioData } from "../data/portfolioData";
 
-import crewflowImg from "../assets/projects_ss/Crewflow_ss.png";
-import kisanSaathiImg from "../assets/projects_ss/Kisan_saathi_ss.webp";
-import netflixGptImg from "../assets/projects_ss/Netflix-gpt_ss.png";
-import ryzeRedesignImg from "../assets/projects_ss/ryze-redesign-ss.png";
-import travellerImg from "../assets/projects_ss/Traveller_ss.webp";
-import gameImg from "../assets/projects_ss/game_ss.png";
+import crewflowImg from "../assets/projects_ss/crewflow/overview.webp";
+import kisanSaathiImg from "../assets/projects_ss/kisansaathi/overview.webp";
+import netflixGptImg from "../assets/projects_ss/netflixgpt/overview.webp";
+import ryzeRedesignImg from "../assets/projects_ss/ryzeredesign/overview.webp";
+import travellerImg from "../assets/projects_ss/traveller/overview.webp";
+import gameImg from "../assets/projects_ss/game/overview.webp";
 
 const projectImageMap = {
   "proj-3": crewflowImg,
@@ -21,6 +21,256 @@ const projectImageMap = {
   "proj-7": travellerImg,
   "proj-8": gameImg,
 };
+
+// Scan all image files inside projects_ss subfolders
+const projectImages = import.meta.glob("../assets/projects_ss/**/*.{png,jpg,jpeg,webp}", {
+  eager: true,
+  import: "default",
+});
+
+// Map project folder names to their IDs in portfolioData
+const folderToProjIdMap = {
+  asta: "proj-1",
+  spatialstudio: "proj-2",
+  crewflow: "proj-3",
+  kisansaathi: "proj-4",
+  netflixgpt: "proj-5",
+  ryzeredesign: "proj-6",
+  traveller: "proj-7",
+  game: "proj-8",
+};
+
+// Automatically build project insights based on files in the directory
+const projectInsightsMap = {};
+
+// Initialize with empty arrays
+Object.values(folderToProjIdMap).forEach((id) => {
+  projectInsightsMap[id] = [];
+});
+
+// Process files
+Object.entries(projectImages).forEach(([filePath, resolvedUrl]) => {
+  // filePath is e.g. "../assets/projects_ss/crewflow/overview.webp"
+  const parts = filePath.split("/");
+  if (parts.length >= 3) {
+    const folderName = parts[parts.length - 2].toLowerCase(); // e.g. "crewflow"
+    const fileNameWithExt = parts[parts.length - 1]; // e.g. "overview.webp"
+    const projId = folderToProjIdMap[folderName];
+
+    if (projId) {
+      // Extract label from filename (e.g., "1_dashboard.webp" -> "Dashboard", "overview.webp" -> "Overview")
+      let cleanLabel = fileNameWithExt.split(".")[0];
+      
+      // Remove leading number sorting prefixes (e.g. "1_", "2_") if present
+      cleanLabel = cleanLabel.replace(/^\d+[-_]/, "");
+      
+      // Capitalize first letter of each word and replace dashes/underscores with spaces
+      const formattedLabel = cleanLabel
+        .split(/[-_]/)
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(" ");
+
+      projectInsightsMap[projId].push({
+        label: formattedLabel,
+        image: resolvedUrl,
+        filename: fileNameWithExt, // used for alphabetical/numeric sorting
+      });
+    }
+  }
+});
+
+// Sort the insights inside each project and clean up empty ones
+Object.keys(projectInsightsMap).forEach((projId) => {
+  if (projectInsightsMap[projId].length > 0) {
+    projectInsightsMap[projId].sort((a, b) => a.filename.localeCompare(b.filename));
+  } else {
+    // If a project has no local images in its folder, fall back to its Unsplash URL or projectImageMap default
+    delete projectInsightsMap[projId];
+  }
+});
+
+function ProjectCard({ project, index, projectImg, insights }) {
+  const [activeTabIndex, setActiveTabIndex] = useState(0);
+
+  const activeImage = insights && insights[activeTabIndex] 
+    ? insights[activeTabIndex].image 
+    : projectImg;
+
+  const subtitle = project.subtitle || "Featured Engineering Application";
+  const features = project.features || [];
+
+  return (
+    <motion.div
+      layout
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.6 }}
+      className={`flex flex-col ${
+        index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
+      } gap-10 lg:gap-16 items-center w-full p-6 sm:p-8 lg:p-10 rounded-3xl border border-white/[0.02] bg-white/[0.01] hover:bg-white/[0.02] hover:border-white/[0.07] transition-all duration-500 relative group/card shadow-2xl overflow-hidden`}
+    >
+      {/* Dynamic Radial Ambient Spotlight following card hover in gold/amber */}
+      <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-gradient-to-br from-amber-500/5 to-yellow-500/5 rounded-full blur-3xl pointer-events-none opacity-0 group-hover/card:opacity-100 transition-opacity duration-700 z-0" />
+
+      {/* Left Block: Landscape Preview Image and Tabs */}
+      <div className="w-full lg:w-[48%] flex flex-col gap-4 shrink-0 z-10">
+        <motion.div
+          initial={{ x: index % 2 === 0 ? -80 : 80, opacity: 0 }}
+          whileInView={{ x: 0, opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          className="w-full aspect-[16/10] sm:aspect-[16/9] lg:aspect-[16/10] overflow-hidden rounded-2xl border border-white/10 shadow-2xl relative group bg-black/40"
+        >
+          {/* AnimatePresence for smooth crossfade of activeImage */}
+          <AnimatePresence mode="wait">
+            <motion.img
+              key={activeTabIndex}
+              initial={{ opacity: 0, scale: 0.98 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 1.02 }}
+              transition={{ duration: 0.3 }}
+              src={activeImage}
+              alt={`${project.title} - ${insights && insights[activeTabIndex] ? insights[activeTabIndex].label : 'Overview'}`}
+              loading="lazy"
+              className="w-full h-full object-fill transition-transform duration-700 group-hover:scale-[1.03]"
+            />
+          </AnimatePresence>
+          <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/10 to-transparent opacity-60 pointer-events-none" />
+
+          {/* Floating Category Tag */}
+          <span className="absolute top-4 left-4 bg-black/80 backdrop-blur-md border border-white/5 text-[9px] uppercase tracking-widest font-extrabold text-amber-400 py-1.5 px-3.5 rounded-full">
+            {project.category}
+          </span>
+        </motion.div>
+
+        {/* Feature Tabs row - only rendered if there's more than 1 insight */}
+        {insights && insights.length > 1 && (
+          <div className="flex flex-wrap items-center gap-2 mt-1">
+            {insights.map((insight, tIndex) => (
+              <button
+                key={insight.label}
+                onClick={() => setActiveTabIndex(tIndex)}
+                className={`relative px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider border transition-all duration-300 cursor-pointer ${
+                  activeTabIndex === tIndex
+                    ? "text-white border-transparent bg-gradient-to-r from-amber-500 to-orange-500 shadow-md shadow-amber-500/10"
+                    : "text-neutral-400 border-white/5 bg-white/[0.02] hover:text-white hover:border-white/10"
+                }`}
+              >
+                {/* Active sliding indicator backdrop (Framer Motion layoutId) */}
+                {activeTabIndex === tIndex && (
+                  <motion.span
+                    layoutId={`active-tab-indicator-${project.id}`}
+                    className="absolute inset-0 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 -z-10"
+                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                  />
+                )}
+                <span className="relative z-10">{insight.label}</span>
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+
+      {/* Right Block: Content Details */}
+      <motion.div
+        initial={{ x: index % 2 === 0 ? 80 : -80, opacity: 0 }}
+        whileInView={{ x: 0, opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.7, ease: "easeOut" }}
+        className="flex flex-col items-start w-full z-10"
+      >
+        {/* Title & Slogan */}
+        <h3 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-none mb-2 bg-clip-text text-transparent bg-gradient-to-r from-[#E11D48] via-[#D6A45C] to-[#10B981] pb-1">
+          {project.title}
+        </h3>
+        <div className="text-neutral-400 text-xs sm:text-sm font-medium tracking-wide mb-3">
+          {subtitle}
+        </div>
+
+        {/* Performance metrics display */}
+        {project.stats && (
+          <div className="flex flex-wrap items-center gap-2.5 mb-4">
+            {Object.entries(project.stats).map(([key, val]) => (
+              <div
+                key={key}
+                className="flex items-center gap-1.5 bg-white/[0.03] border border-white/5 rounded-md px-2.5 py-1 text-[10px] font-bold text-gray-400 uppercase tracking-wider transition-all duration-300 hover:bg-white/[0.06] hover:border-white/10"
+              >
+                {key === "performance" ||
+                key === "accuracy" ||
+                key === "score" ||
+                key === "optimization" ||
+                key === "animation" ||
+                key === "engine" ? (
+                  <Activity className="w-3.5 h-3.5 text-emerald-400" />
+                ) : (
+                  <Award className="w-3.5 h-3.5 text-[#D6A45C]" />
+                )}
+                <span>
+                  {key}:{" "}
+                  <span className="text-white font-semibold">
+                    {val}
+                  </span>
+                </span>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* Gradient accent separator */}
+        <div className="w-12 h-[2.5px] bg-gradient-to-r from-amber-500 to-yellow-500 rounded-full mb-5" />
+
+        {/* Main Description */}
+        <p className="text-neutral-300 text-sm sm:text-base font-light leading-relaxed mb-6 max-w-2xl">
+          {project.description}
+        </p>
+
+        {/* Bullets with rotating CSS diamonds */}
+        <ul className="flex flex-col gap-3 mb-6">
+          {features.map((feature, i) => (
+            <li
+              key={i}
+              className="flex items-center gap-3 text-xs sm:text-sm text-neutral-300 font-light"
+            >
+              <span className="flex-shrink-0 w-2 h-2 rotate-45 bg-gradient-to-r from-amber-500 to-yellow-500 rounded-sm" />
+              <span>{feature}</span>
+            </li>
+          ))}
+        </ul>
+
+        {/* Tech Tags */}
+        <div className="flex flex-wrap gap-2.5 mb-8">
+          {project.tags.map((tag) => (
+            <span
+              key={tag}
+              className="text-[10px] font-semibold text-neutral-300 bg-white/[0.03] border border-white/[0.08] py-1.5 px-3.5 rounded-full"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+
+        {/* Call to Actions */}
+        <div className="flex flex-wrap items-center gap-4">
+          <a
+            href={project.liveUrl}
+            className="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white text-xs font-semibold uppercase tracking-wider py-3 px-6 rounded-full transition-all duration-300 shadow-md shadow-amber-500/10 hover:shadow-amber-500/20 hover:scale-[1.02] flex items-center gap-2"
+          >
+            <span>View Live</span>
+            <ExternalLink className="w-3.5 h-3.5" />
+          </a>
+          <a
+            href={project.githubUrl}
+            className="border border-white/10 bg-white/5 hover:bg-white/10 text-neutral-300 hover:text-white text-xs font-semibold uppercase tracking-wider py-3 px-6 rounded-full transition-all duration-300 flex items-center gap-2"
+          >
+            <Github className="w-3.5 h-3.5" />
+            <span>Source Code</span>
+          </a>
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+}
 
 function ProjectsComponent() {
   const allProjects = portfolioData.projects;
@@ -88,145 +338,17 @@ function ProjectsComponent() {
       <div className="flex flex-col gap-10 sm:gap-14 w-full relative z-10">
         <AnimatePresence mode="popLayout">
           {visibleProjects.map((project, index) => {
-            const subtitle =
-              project.subtitle || "Featured Engineering Application";
-            const features = project.features || [];
             const projectImg = projectImageMap[project.id] || project.image;
+            const insights = projectInsightsMap[project.id];
 
             return (
-              <motion.div
-                layout
+              <ProjectCard
                 key={project.id}
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true, margin: "-80px" }}
-                transition={{ duration: 0.6 }}
-                className={`flex flex-col ${
-                  index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
-                } gap-10 lg:gap-16 items-center w-full p-6 sm:p-8 lg:p-10 rounded-3xl border border-white/[0.02] bg-white/[0.01] hover:bg-white/[0.02] hover:border-white/[0.07] transition-all duration-500 relative group/card shadow-2xl overflow-hidden`}
-              >
-                {/* Dynamic Radial Ambient Spotlight following card hover in gold/amber */}
-                <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-gradient-to-br from-amber-500/5 to-yellow-500/5 rounded-full blur-3xl pointer-events-none opacity-0 group-hover/card:opacity-100 transition-opacity duration-700 z-0" />
-
-                {/* Left Block: Landscape Preview Image with Left-to-Center Animation */}
-                <motion.div
-                  initial={{ x: index % 2 === 0 ? -80 : 80, opacity: 0 }}
-                  whileInView={{ x: 0, opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.7, ease: "easeOut" }}
-                  className="w-full lg:w-[48%] aspect-[16/10] sm:aspect-[16/9] lg:aspect-[16/10] overflow-hidden rounded-2xl border border-white/10 shadow-2xl relative group bg-black/40 shrink-0 z-10"
-                >
-                  <img
-                    src={projectImg}
-                    alt={project.title}
-                    className="w-full h-full object-fill transition-transform duration-700 group-hover:scale-[1.03]"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/10 to-transparent opacity-60" />
-
-                  {/* Floating Category Tag */}
-                  <span className="absolute top-4 left-4 bg-black/80 backdrop-blur-md border border-white/5 text-[9px] uppercase tracking-widest font-extrabold text-amber-400 py-1.5 px-3.5 rounded-full">
-                    {project.category}
-                  </span>
-                </motion.div>
-
-                {/* Right Block: Content Details with Right-to-Center Animation */}
-                <motion.div
-                  initial={{ x: index % 2 === 0 ? 80 : -80, opacity: 0 }}
-                  whileInView={{ x: 0, opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.7, ease: "easeOut" }}
-                  className="flex flex-col items-start w-full z-10"
-                >
-                  {/* Title & Slogan */}
-                  <h3 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-none mb-2 bg-clip-text text-transparent bg-gradient-to-r from-[#E11D48] via-[#D6A45C] to-[#10B981] pb-1">
-                    {project.title}
-                  </h3>
-                  <div className="text-neutral-400 text-xs sm:text-sm font-medium tracking-wide mb-3">
-                    {subtitle}
-                  </div>
-
-                  {/* Performance metrics display (matches reference mockup vibe) */}
-                  {project.stats && (
-                    <div className="flex flex-wrap items-center gap-2.5 mb-4">
-                      {Object.entries(project.stats).map(([key, val]) => (
-                        <div
-                          key={key}
-                          className="flex items-center gap-1.5 bg-white/[0.03] border border-white/5 rounded-md px-2.5 py-1 text-[10px] font-bold text-gray-400 uppercase tracking-wider transition-all duration-300 hover:bg-white/[0.06] hover:border-white/10"
-                        >
-                          {key === "performance" ||
-                          key === "accuracy" ||
-                          key === "score" ||
-                          key === "optimization" ||
-                          key === "animation" ||
-                          key === "engine" ? (
-                            <Activity className="w-3.5 h-3.5 text-emerald-400" />
-                          ) : (
-                            <Award className="w-3.5 h-3.5 text-[#D6A45C]" />
-                          )}
-                          <span>
-                            {key}:{" "}
-                            <span className="text-white font-semibold">
-                              {val}
-                            </span>
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-
-                  {/* Gradient accent separator */}
-                  <div className="w-12 h-[2.5px] bg-gradient-to-r from-amber-500 to-yellow-500 rounded-full mb-5" />
-
-                  {/* Main Description */}
-                  <p className="text-neutral-300 text-sm sm:text-base font-light leading-relaxed mb-6 max-w-2xl">
-                    {project.description}
-                  </p>
-
-                  {/* Bullets with rotating CSS diamonds */}
-                  <ul className="flex flex-col gap-3 mb-6">
-                    {features.map((feature, i) => (
-                      <li
-                        key={i}
-                        className="flex items-center gap-3 text-xs sm:text-sm text-neutral-300 font-light"
-                      >
-                        {/* 45-degree rotated CSS square forms a perfect diamond! */}
-                        <span className="flex-shrink-0 w-2 h-2 rotate-45 bg-gradient-to-r from-amber-500 to-yellow-500 rounded-sm" />
-                        <span>{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  {/* Tech Tags */}
-                  <div className="flex flex-wrap gap-2.5 mb-8">
-                    {project.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="text-[10px] font-semibold text-neutral-300 bg-white/[0.03] border border-white/[0.08] py-1.5 px-3.5 rounded-full"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* Call to Actions */}
-                  <div className="flex flex-wrap items-center gap-4">
-                    <a
-                      href={project.liveUrl}
-                      className="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white text-xs font-semibold uppercase tracking-wider py-3 px-6 rounded-full transition-all duration-300 shadow-md shadow-amber-500/10 hover:shadow-amber-500/20 hover:scale-[1.02] flex items-center gap-2"
-                    >
-                      <span>View Live</span>
-                      <ExternalLink className="w-3.5 h-3.5" />
-                    </a>
-                    <a
-                      href={project.githubUrl}
-                      className="border border-white/10 bg-white/5 hover:bg-white/10 text-neutral-300 hover:text-white text-xs font-semibold uppercase tracking-wider py-3 px-6 rounded-full transition-all duration-300 flex items-center gap-2"
-                    >
-                      <Github className="w-3.5 h-3.5" />
-                      <span>Source Code</span>
-                    </a>
-                  </div>
-                </motion.div>
-              </motion.div>
+                project={project}
+                index={index}
+                projectImg={projectImg}
+                insights={insights}
+              />
             );
           })}
         </AnimatePresence>

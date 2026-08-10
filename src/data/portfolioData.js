@@ -1,4 +1,4 @@
-import profileimg from "../assets/profileimg.jpeg";
+import profileimg from "../assets/profileimg.webp";
 
 export const portfolioData = {
   personalInfo: {

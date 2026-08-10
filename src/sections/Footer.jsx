@@ -11,7 +11,7 @@ import {
 import { Github, Linkedin, Twitter } from "../components/SocialIcon";
 import { portfolioData } from "../data/portfolioData";
 import { scrollToSection } from "../utils/scroll";
-import logoName from "../assets/logo_name.png";
+import logoName from "../assets/logo_name.webp";
 
 export function Footer() {
   const { name, github, linkedin, twitter, email, location, tagline } =
