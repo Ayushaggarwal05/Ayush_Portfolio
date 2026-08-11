@@ -1,32 +1,38 @@
 import React, { useState } from "react";
-import { Cpu, Layers, Zap, Layout, ArrowUpRight } from "lucide-react";
+import { Monitor, Server, BrainCircuit, Workflow, ArrowUpRight } from "lucide-react";
 import { SectionWrapper } from "../layouts/SectionWrapper";
 import { SectionHeader } from "../components/SectionHeader";
 import { portfolioData } from "../data/portfolioData";
 
+// Import locally optimized WebP services backgrounds
+import frontendImg from "../assets/services/frontend.webp";
+import backendImg from "../assets/services/backend.webp";
+import aiImg from "../assets/services/ai.webp";
+import architectureImg from "../assets/services/architecture.webp";
+
 const iconMap = {
-  Cpu,
-  Layers,
-  Zap,
-  Layout,
+  Monitor,
+  Server,
+  BrainCircuit,
+  Workflow,
 };
 
 const serviceMedia = {
   "service-1": {
     gradient: "from-[#D6A45C]/25 to-[#4A0E1A]/60",
-    img: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=800&q=80", // Bright UI design and wireframes
+    img: frontendImg,
   },
   "service-2": {
     gradient: "from-[#4A0E1A]/30 to-[#2D0B12]/70",
-    img: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&w=800&q=80", // Bright neon coding on screen
+    img: backendImg,
   },
   "service-3": {
     gradient: "from-[#D6A45C]/20 via-[#4A0E1A]/40 to-[#070707]/70",
-    img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80", // Bright analytics dashboard and metrics
+    img: aiImg,
   },
   "service-4": {
     gradient: "from-[#6E1126]/30 to-[#2D0B12]/70",
-    img: "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?auto=format&fit=crop&w=800&q=80", // Bright UI/UX design sketches and color palettes
+    img: architectureImg,
   },
 };
 

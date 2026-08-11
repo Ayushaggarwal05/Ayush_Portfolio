@@ -48,31 +48,31 @@ export const portfolioData = {
   services: [
     {
       id: "service-1",
-      title: "Frontend Craftsmanship",
-      icon: "Cpu",
+      title: "Frontend Engineering",
+      icon: "Monitor",
       description:
-        "Crafting responsive, accessible, and high-performance user interfaces using React, TypeScript, Tailwind CSS, and modern animation libraries to deliver seamless user experiences across devices.",
+        "Building polished, responsive interfaces with React, TypeScript, Next.js, Tailwind CSS, and modern component systems, with a focus on usability, accessibility, and smooth interactions.",
     },
     {
       id: "service-2",
-      title: "Full Stack Development",
-      icon: "Layers",
+      title: "Backend & API Engineering",
+      icon: "Server",
       description:
-        "Designing and developing scalable backend systems, secure REST APIs, authentication workflows, and robust databases using Django, FastAPI, Node.js, PostgreSQL, and Redis.",
+        "Designing reliable backend systems and REST APIs with Django, FastAPI, and Node.js, backed by PostgreSQL, Redis, and secure authentication, authorization, and data workflows.",
     },
     {
       id: "service-3",
-      title: "Performance Optimization",
-      icon: "Zap",
+      title: "AI Systems & RAG",
+      icon: "BrainCircuit",
       description:
-        "Optimizing performance through efficient rendering, API optimization, database indexing, caching strategies, lazy loading, and scalable architecture for production environments.",
+        "Engineering practical AI applications with LLMs, hybrid RAG, semantic search, vector databases, structured retrieval, and evaluation pipelines focused on accuracy and reliable outputs.",
     },
     {
       id: "service-4",
-      title: "UI/UX & SaaS Architecture",
-      icon: "Layout",
+      title: "System Architecture",
+      icon: "Workflow",
       description:
-        "Architecting scalable SaaS applications with reusable component systems, multi-tenant isolation, role-based access control, and modular design patterns.",
+        "Designing scalable application architectures with multi-agent workflows, asynchronous processing, caching, modular services, multi-tenant systems, and production-ready engineering patterns.",
     },
   ],
 
@@ -178,10 +178,13 @@ export const portfolioData = {
       githubUrl:
         "https://github.com/Ayushaggarwal05/Personal_Intelligence_System",
       caseStudy: {
-        overview: "ASTA is a privacy-first, locally-run AI assistant built for software engineers to analyze, explain, and write code directly against complex codebases. It is designed to run entirely offline to protect corporate code and prevent intellectual property leaks.",
-        challenge: "Parsing and indexing thousands of code lines into a format that a local LLM can reason about without exceeding its context window, while keeping latency minimal on standard consumer hardware.",
-        solution: "We built a recursive AST (Abstract Syntax Tree) code parser that splits files into semantic code chunks. Chunks are embedded locally and indexed in a LanceDB vector database. A FastAPI coordinator then deploys a hybrid keyword-semantic RAG pipeline, feeding context into local Ollama models with fast response rates."
-      }
+        overview:
+          "ASTA is a privacy-first, locally-run AI assistant built for software engineers to analyze, explain, and write code directly against complex codebases. It is designed to run entirely offline to protect corporate code and prevent intellectual property leaks.",
+        challenge:
+          "Parsing and indexing thousands of code lines into a format that a local LLM can reason about without exceeding its context window, while keeping latency minimal on standard consumer hardware.",
+        solution:
+          "We built a recursive AST (Abstract Syntax Tree) code parser that splits files into semantic code chunks. Chunks are embedded locally and indexed in a LanceDB vector database. A FastAPI coordinator then deploys a hybrid keyword-semantic RAG pipeline, feeding context into local Ollama models with fast response rates.",
+      },
     },
     {
       id: "proj-2",
@@ -201,10 +204,13 @@ export const portfolioData = {
       liveUrl: "#",
       githubUrl: "https://github.com/Ayushaggarwal05/Home_Decor_AI",
       caseStudy: {
-        overview: "Spatial Studio is an AI-powered interior design and layout platform. It allows users to upload raw photos of a room, automatically identifies furniture items, analyzes the occupancy/clearance grids, and generates visually optimized redesigns.",
-        challenge: "Performing accurate 3D geometry layout approximations and obstacle detection from flat, uncalibrated 2D mobile photos, followed by stable image generation of layout changes.",
-        solution: "Implemented a computer vision pipeline utilizing YOLOv8 and PyTorch to classify objects, detect boundaries, and calculate real-world physical dimensions. The data is mapped to an interior occupancy grid. The layout suggestions are then processed using generative diffusion models to create high-contrast, stylized layout redesigns."
-      }
+        overview:
+          "Spatial Studio is an AI-powered interior design and layout platform. It allows users to upload raw photos of a room, automatically identifies furniture items, analyzes the occupancy/clearance grids, and generates visually optimized redesigns.",
+        challenge:
+          "Performing accurate 3D geometry layout approximations and obstacle detection from flat, uncalibrated 2D mobile photos, followed by stable image generation of layout changes.",
+        solution:
+          "Implemented a computer vision pipeline utilizing YOLOv8 and PyTorch to classify objects, detect boundaries, and calculate real-world physical dimensions. The data is mapped to an interior occupancy grid. The layout suggestions are then processed using generative diffusion models to create high-contrast, stylized layout redesigns.",
+      },
     },
     {
       id: "proj-3",
@@ -231,10 +237,13 @@ export const portfolioData = {
       liveUrl: "https://crewflow-frontend.vercel.app/",
       githubUrl: "https://github.com/Ayushaggarwal05/CrewFlow",
       caseStudy: {
-        overview: "CrewFlow is a modern multi-tenant SaaS workspace and project management platform. Designed for enterprise agility, it allows organizations to spin up private workspaces, manage complex project hierarchies, assign issues, and track progress.",
-        challenge: "Ensuring strict data isolation and security between multiple independent corporations sharing the same database, while providing zero-latency live updates across collaborative Kanban boards.",
-        solution: "Designed a multi-tenant PostgreSQL schema utilizing client schema filters and hierarchical role-based access control (RBAC). Front-end states are managed using Redux Toolkit, and workspace interactions are synchronized using React and Django REST APIs, supporting smooth drag-and-drop boards using @dnd-kit."
-      }
+        overview:
+          "CrewFlow is a modern multi-tenant SaaS workspace and project management platform. Designed for enterprise agility, it allows organizations to spin up private workspaces, manage complex project hierarchies, assign issues, and track progress.",
+        challenge:
+          "Ensuring strict data isolation and security between multiple independent corporations sharing the same database, while providing zero-latency live updates across collaborative Kanban boards.",
+        solution:
+          "Designed a multi-tenant PostgreSQL schema utilizing client schema filters and hierarchical role-based access control (RBAC). Front-end states are managed using Redux Toolkit, and workspace interactions are synchronized using React and Django REST APIs, supporting smooth drag-and-drop boards using @dnd-kit.",
+      },
     },
     {
       id: "proj-4",
@@ -261,10 +270,13 @@ export const portfolioData = {
       liveUrl: "#",
       githubUrl: "https://github.com/Ayushaggarwal05/Kisan-Saathi-Project-",
       caseStudy: {
-        overview: "Kisan Saathi is an AI-powered agricultural portal designed to empower farmers with data-driven agricultural insights. The platform features live commodity market (Mandi) price tracking, localized crop weather forecasting, and automated plant disease diagnostics.",
-        challenge: "Performing fast, reliable crop leaf disease classifications on low-bandwidth rural networks where uploading high-resolution images is slow and failure-prone.",
-        solution: "Implemented a light-weight front-end image compressor that scales and optimizes uploaded leaf photos before transmission. Images are processed using the Gemini API vision endpoints to diagnose crop infections and suggest remedies, while live Mandi prices are retrieved via government APIs and presented using interactive chart analytics."
-      }
+        overview:
+          "Kisan Saathi is an AI-powered agricultural portal designed to empower farmers with data-driven agricultural insights. The platform features live commodity market (Mandi) price tracking, localized crop weather forecasting, and automated plant disease diagnostics.",
+        challenge:
+          "Performing fast, reliable crop leaf disease classifications on low-bandwidth rural networks where uploading high-resolution images is slow and failure-prone.",
+        solution:
+          "Implemented a light-weight front-end image compressor that scales and optimizes uploaded leaf photos before transmission. Images are processed using the Gemini API vision endpoints to diagnose crop infections and suggest remedies, while live Mandi prices are retrieved via government APIs and presented using interactive chart analytics.",
+      },
     },
     {
       id: "proj-5",
@@ -291,10 +303,13 @@ export const portfolioData = {
       liveUrl: "https://netflix-gpt-nine-sigma.vercel.app/",
       githubUrl: "https://github.com/Ayushaggarwal05/Netflix-GPT-",
       caseStudy: {
-        overview: "Netflix-GPT is an AI-enhanced movie discovery and recommendation platform. It combines a high-fidelity streaming interface inspired by Netflix with natural language search capabilities to let users find movies based on moods, genres, or complex descriptive prompts.",
-        challenge: "Parsing user queries like 'underdog sports movies with a 90s aesthetic' and matching them to structured movie catalogs with fast search query response times.",
-        solution: "Integrated Gemini AI vector reasoning to parse natural language queries, map them to search categories, and fetch movie IDs from TMDB (The Movie Database) APIs. User state is managed with Redux Toolkit, and secure authentication is implemented using Clerk Auth."
-      }
+        overview:
+          "Netflix-GPT is an AI-enhanced movie discovery and recommendation platform. It combines a high-fidelity streaming interface inspired by Netflix with natural language search capabilities to let users find movies based on moods, genres, or complex descriptive prompts.",
+        challenge:
+          "Parsing user queries like 'underdog sports movies with a 90s aesthetic' and matching them to structured movie catalogs with fast search query response times.",
+        solution:
+          "Integrated Gemini AI vector reasoning to parse natural language queries, map them to search categories, and fetch movie IDs from TMDB (The Movie Database) APIs. User state is managed with Redux Toolkit, and secure authentication is implemented using Clerk Auth.",
+      },
     },
     {
       id: "proj-6",
@@ -314,10 +329,13 @@ export const portfolioData = {
       liveUrl: "https://ryze-redesign-website.vercel.app/",
       githubUrl: "https://github.com/Ayushaggarwal05/Ryze_Redesign_website",
       caseStudy: {
-        overview: "Ryze AI Redesign is a high-fidelity marketing landing page rebuild showcasing modern front-end motion design and interactive graphics. The redesign focuses on achieving fluid page scrolls, micro-interactions, and premium aesthetics that match top tech startups.",
-        challenge: "Synchronizing complex visual entrance animations, parallax scrolls, and hover triggers without causing screen tearing, layout shifts, or dropping frame rates below 60fps.",
-        solution: "Constructed interactive layouts using React and Tailwind CSS, driving entrance animations with Framer Motion and advanced scroll effects with GSAP (GreenSock). Scroll events are debounced, and canvas/layout paints are optimized using GPU-accelerated transforms to maintain steady 60fps performance."
-      }
+        overview:
+          "Ryze AI Redesign is a high-fidelity marketing landing page rebuild showcasing modern front-end motion design and interactive graphics. The redesign focuses on achieving fluid page scrolls, micro-interactions, and premium aesthetics that match top tech startups.",
+        challenge:
+          "Synchronizing complex visual entrance animations, parallax scrolls, and hover triggers without causing screen tearing, layout shifts, or dropping frame rates below 60fps.",
+        solution:
+          "Constructed interactive layouts using React and Tailwind CSS, driving entrance animations with Framer Motion and advanced scroll effects with GSAP (GreenSock). Scroll events are debounced, and canvas/layout paints are optimized using GPU-accelerated transforms to maintain steady 60fps performance.",
+      },
     },
     {
       id: "proj-7",
@@ -344,10 +362,13 @@ export const portfolioData = {
       liveUrl: "#",
       githubUrl: "https://github.com/Ayushaggarwal05",
       caseStudy: {
-        overview: "Traveller is a full-stack travel planning and comparison portal. It assists users in creating multi-destination travel itineraries, comparing transport routes, booking accommodations, and accessing guide listings through a responsive multilingual interface.",
-        challenge: "Managing localized states and comparing transportation routes in real-time across multiple third-party transit APIs while maintaining a smooth multilingual UI.",
-        solution: "Developed a localized front-end architecture using React, i18next, and React Router. Transit comparisons are aggregated using Express/Node.js endpoints, caching search results to reduce API rates. Animations are handled using Framer Motion to make page transitions look seamless."
-      }
+        overview:
+          "Traveller is a full-stack travel planning and comparison portal. It assists users in creating multi-destination travel itineraries, comparing transport routes, booking accommodations, and accessing guide listings through a responsive multilingual interface.",
+        challenge:
+          "Managing localized states and comparing transportation routes in real-time across multiple third-party transit APIs while maintaining a smooth multilingual UI.",
+        solution:
+          "Developed a localized front-end architecture using React, i18next, and React Router. Transit comparisons are aggregated using Express/Node.js endpoints, caching search results to reduce API rates. Animations are handled using Framer Motion to make page transitions look seamless.",
+      },
     },
     {
       id: "proj-8",
@@ -373,10 +394,13 @@ export const portfolioData = {
       liveUrl: "#",
       githubUrl: "https://github.com/Ayushaggarwal05",
       caseStudy: {
-        overview: "An interactive browser-based Rock Paper Scissors game featuring smooth game loops, score mechanics, and real-time computer choice heuristics built with Vanilla JavaScript, HTML5, and CSS3.",
-        challenge: "Designing a responsive, animated game dashboard using vanilla DOM APIs that keeps track of user scores, displays animations for choices, and resets states instantly without layout shifts.",
-        solution: "Structured using semantic HTML5 and styled with vanilla CSS custom properties (variables) for fast theme toggles. Game state and scoring logic are handled via pure JavaScript event listeners, leveraging CSS keyframe animations for the countdown and hand shake transitions."
-      }
+        overview:
+          "An interactive browser-based Rock Paper Scissors game featuring smooth game loops, score mechanics, and real-time computer choice heuristics built with Vanilla JavaScript, HTML5, and CSS3.",
+        challenge:
+          "Designing a responsive, animated game dashboard using vanilla DOM APIs that keeps track of user scores, displays animations for choices, and resets states instantly without layout shifts.",
+        solution:
+          "Structured using semantic HTML5 and styled with vanilla CSS custom properties (variables) for fast theme toggles. Game state and scoring logic are handled via pure JavaScript event listeners, leveraging CSS keyframe animations for the countdown and hand shake transitions.",
+      },
     },
   ],
 };

@@ -33,7 +33,7 @@ function GithubActivityComponent() {
           whileInView={{ scale: 1, opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
-          className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white mb-4 text-center"
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-white mb-4 text-center font-serif"
         >
           GITHUB <span className="text-gradient">ACTIVITY</span>
         </motion.h2>
