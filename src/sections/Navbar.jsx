@@ -88,7 +88,7 @@ export function Navbar() {
                   {isActive && (
                     <motion.span
                       layoutId="nav-active-pill"
-                      className="absolute inset-0 rounded-full bg-white/[0.08] border border-white/10 shadow-[inset_0_1px_1px_rgba(255,255,255,0.08)]"
+                      className="absolute inset-0 rounded-full bg-amber-500/[0.08] border border-amber-500/20 shadow-[0_0_12px_rgba(245,158,11,0.06),inset_0_1px_1px_rgba(245,158,11,0.15)]"
                       transition={{
                         type: "spring",
                         stiffness: 380,
@@ -109,7 +109,7 @@ export function Navbar() {
                     {IconComponent && (
                       <IconComponent
                         className={`w-3.5 h-3.5 lg:w-4 lg:h-4 ${
-                          isActive ? "text-white" : "text-neutral-400 group-hover:text-white"
+                          isActive ? "text-amber-400" : "text-neutral-400 group-hover:text-white"
                         } transition-colors duration-200`}
                       />
                     )}
@@ -175,7 +175,7 @@ export function Navbar() {
                   onClick={(e) => handleNavClick(e, link.id)}
                   className={`text-base font-medium tracking-wide block py-2.5 px-4 rounded-xl transition-all duration-300 ${
                     isActive
-                      ? "text-white bg-white/10 border border-white/5 shadow-inner"
+                      ? "text-amber-400 bg-amber-500/[0.08] border border-amber-500/20 shadow-inner"
                       : "text-gray-400 hover:text-white hover:bg-white/[0.04]"
                   }`}
                 >
@@ -183,7 +183,7 @@ export function Navbar() {
                     <div className="flex items-center gap-3">
                       {IconComponent && (
                         <IconComponent
-                          className={`w-5 h-5 ${isActive ? "text-white" : "text-neutral-400"}`}
+                          className={`w-5 h-5 ${isActive ? "text-amber-400" : "text-neutral-400"}`}
                         />
                       )}
                       <span>{link.label}</span>
