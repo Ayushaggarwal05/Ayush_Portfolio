@@ -140,3 +140,10 @@
 .text-glow {
   text-shadow: 0 0 20px rgba(214, 164, 92, 0.45);
 }
+
+/* Custom cursor support: hide default cursor on desktop screens */
+@media (min-width: 1024px) {
+  html, body, a, button, input, textarea, select, [role="button"], .cursor-pointer {
+    cursor: none !important;
+  }
+}

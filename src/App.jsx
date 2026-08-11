@@ -8,6 +8,7 @@ import { Projects } from "./sections/Projects";
 import { GithubActivity } from "./sections/GithubActivity";
 import { Contact } from "./sections/Contact";
 import { Footer } from "./sections/Footer";
+import CustomCursor from "./components/CustomCursor";
 
 function App() {
   return (
@@ -59,6 +60,7 @@ function App() {
 
       {/* Premium Footer */}
       <Footer />
+      <CustomCursor />
     </div>
   );
 }
