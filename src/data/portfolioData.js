@@ -1,5 +1,5 @@
 import profileimg from "../assets/profileimg.webp";
-import astaImg from "../assets/projects_ss/asta/1_overview.webp";
+import astaImg from "../assets/projects_ss/asta/1_AstaIntro.webp";
 import spatialstudioImg from "../assets/projects_ss/spatialstudio/1_landing-page.webp";
 import crewflowImg from "../assets/projects_ss/crewflow/1_landing-page.webp";
 import kisanSaathiImg from "../assets/projects_ss/kisansaathi/overview.webp";
